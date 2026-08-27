@@ -37,5 +37,5 @@ an interactive user's selected account or target.
 - Remove temporary files created by the job through its normal workspace
   cleanup; do not delete user configuration outside the runner workspace.
 
-`rvs ci` is a placeholder in the 0.4 channel. CI workflows use the package
+`rvs ci` is a placeholder in the 0.5 channel. CI workflows use the package
 wrappers or documented native package-manager configuration instead.

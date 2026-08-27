@@ -4,8 +4,8 @@ description: Install, update, authenticate, inspect, and troubleshoot the Ravens
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.1.0"
-  ravenstash-rvs-compatibility: "0.4.2 or later in the 0.4 channel"
+  version: "0.2.0"
+  ravenstash-rvs-compatibility: "0.5.0 or later in the 0.5 channel"
 ---
 
 # Ravenstash CLI
@@ -17,7 +17,7 @@ lock files, builds, and dependency resolution.
 ## Preflight
 
 1. Check for the CLI with `command -v rvs`.
-2. If present, run `rvs --version`. This skill targets the 0.4 compatibility
+2. If present, run `rvs --version`. This skill targets the 0.5 compatibility
    channel; if the installed command differs, use its help and current release
    notes rather than forcing these examples.
 3. Discover exact syntax with `rvs --help` and `rvs <group> --help`. Never guess
@@ -69,9 +69,9 @@ the command or assume native output becomes JSON.
 
 ## Unsupported groups
 
-In the 0.4 channel, `rvs repo` and `rvs ci` are registered placeholders. Do not
-invent subcommands under them. CI package access uses an automation token and
-the documented package-manager or `rvs` workflow.
+In the 0.5 channel, `rvs repo` manages package repositories and `rvs ci` remains
+a registered placeholder. Do not invent CI subcommands. CI package access uses
+an automation token and the documented package-manager or `rvs` workflow.
 
 ## Completion
 

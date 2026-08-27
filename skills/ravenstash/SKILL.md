@@ -4,7 +4,7 @@ description: Route Ravenstash product requests to the correct supported surface 
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Ravenstash
@@ -58,7 +58,7 @@ availability.
   any operation that could affect remote state. Never substitute a same-named
   object from another account or workspace.
 - Do not imply that a roadmap product or placeholder CLI group is usable. In
-  particular, `rvs repo` and `rvs ci` are placeholders in the 0.4 channel.
+  the 0.5 channel, `rvs repo` is implemented and `rvs ci` remains a placeholder.
 - Do not invent billing, quota, retention, anonymous access, or package-security
   behavior. Refer volatile policy questions to current public documentation.
 

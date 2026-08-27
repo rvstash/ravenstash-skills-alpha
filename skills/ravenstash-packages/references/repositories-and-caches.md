@@ -74,7 +74,7 @@ for plan or role eligibility rather than encoding it in the skill.
 
 ```bash
 rvs pkg cache show CACHE_ID
-rvs pkg repo set-upstream platform/packages CACHE_ID --min-age-days 3
+rvs pkg repo set-upstream platform/packages CACHE_ID --min-age-hours 24
 ```
 
 The attachment copies the cache's age setting at creation and is then managed
