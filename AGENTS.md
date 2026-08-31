@@ -36,10 +36,12 @@ public hosts, documentation-safe names, and obvious placeholders.
   manual.
 - Preserve user scope. A skill never turns a read request into a create,
   publish, switch, configure, yank, or delete operation.
-- Require exact profile, account, target, registry kind, and object identity
-  where ambiguity could affect another resource.
+- Require the exact local profile, acting account, target, registry kind, and
+  object identity where ambiguity could affect another resource.
 - Never include token values or instructions to persist credentials.
-- Do not describe `rvs repo` or `rvs ci` as implemented in the 0.4 channel.
+- In the 0.7 channel, `rvs repo` manages package repositories and `rvs ci`
+  remains a placeholder. Do not invent CI subcommands or a source-repository
+  product.
 - Do not add skills for roadmap products until a released customer workflow
   gives the skill something concrete to operate or interpret.
 

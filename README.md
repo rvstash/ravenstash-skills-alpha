@@ -15,8 +15,8 @@ facts and complete command references remain in the
 | Skill | Purpose |
 | --- | --- |
 | `ravenstash` | Product vocabulary, availability boundaries, source priority, and workflow routing |
-| `ravenstash-cli` | Installation, updates, login profiles, accounts, targets, structured output, runtimes, and troubleshooting |
-| `ravenstash-packages` | PyPI, npm, and Maven repositories, remote caches, lifecycle operations, publishing, installs, and automation |
+| `ravenstash-cli` | Installation, updates, local profiles, acting accounts, targets, structured output, runtimes, and troubleshooting |
+| `ravenstash-packages` | PyPI, npm, and Maven repositories, private mirrors, lifecycle operations, publishing, installs, and automation |
 | `ravenstash-oci` | Container and Helm OCI lanes through Docker, Helm, ORAS, and `rvs` wrappers |
 
 Install all four. Each workflow skill is self-contained, while `ravenstash`

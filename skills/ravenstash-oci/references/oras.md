@@ -18,4 +18,4 @@ shared host alone.
 For a push, inspect the local artifact set and annotations, resolve the stable
 reference with `rvs oci-reference`, and confirm the exact remote reference
 before executing. Do not use ORAS to work around a missing repository lane or
-to target a remote cache.
+to target a private mirror.

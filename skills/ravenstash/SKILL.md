@@ -1,10 +1,10 @@
 ---
 name: ravenstash
-description: Route Ravenstash product requests to the correct supported surface and apply Ravenstash product vocabulary, availability boundaries, and safe operating rules. Use when a user asks about Ravenstash, Ravenstash Packages, repositories, remote caches, rvs, PyPI, npm, Maven, Container, Helm, or which Ravenstash workflow to use.
+description: Route Ravenstash product requests to the correct supported surface and apply Ravenstash product vocabulary, availability boundaries, and safe operating rules. Use when a user asks about Ravenstash, Ravenstash Packages, repositories, private mirrors, rvs, PyPI, npm, Maven, Container, Helm, or which Ravenstash workflow to use.
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Ravenstash
@@ -15,11 +15,11 @@ documentation or installed CLI help.
 
 ## Choose the surface
 
-- Use `ravenstash-cli` for installation, updates, authentication, login
-  profiles, account selection, package-target context, local runtimes, or CLI
+- Use `ravenstash-cli` for installation, updates, authentication, local
+  profiles, acting-account selection, package-target context, local runtimes, or CLI
   troubleshooting.
 - Use `ravenstash-packages` for private PyPI, npm, or Maven repositories,
-  remote caches, package publishing, installs, package lifecycle operations,
+  private mirrors, package publishing, installs, package lifecycle operations,
   and package automation.
 - Use `ravenstash-oci` for Container or Helm repositories and Docker, Helm, or
   ORAS workflows.
@@ -54,11 +54,11 @@ availability.
 - Never request, print, copy, or persist a Ravenstash access token. Interactive
   login uses the browser-backed device flow; automation receives `RVS_TOKEN`
   from the user's secret store.
-- Resolve the login profile, acting account, target, and registry kind before
+- Resolve the local profile, acting account, target, and registry kind before
   any operation that could affect remote state. Never substitute a same-named
   object from another account or workspace.
 - Do not imply that a roadmap product or placeholder CLI group is usable. In
-  the 0.5 channel, `rvs repo` is implemented and `rvs ci` remains a placeholder.
+  the 0.7 channel, `rvs repo` is implemented and `rvs ci` remains a placeholder.
 - Do not invent billing, quota, retention, anonymous access, or package-security
   behavior. Refer volatile policy questions to current public documentation.
 

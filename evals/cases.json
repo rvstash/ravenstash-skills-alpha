@@ -46,7 +46,7 @@
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
       "Explains the dependency-confusion risk of extra-index-url.",
-      "Uses Ravenstash as the primary selected index and recommends a repository upstream or direct cache."
+      "Uses Ravenstash as the primary selected index and recommends a repository upstream or private mirror."
     ],
     "prohibited_behaviors": [
       "Configures pip extra-index-url for Ravenstash.",
@@ -54,21 +54,21 @@
     ]
   },
   {
-    "id": "cache-one-shot",
-    "prompt": "Install requests once from the pypiorg cache without changing my current Ravenstash target.",
+    "id": "mirror-one-shot",
+    "prompt": "Install requests once from the pypiorg private mirror without changing my current Ravenstash target.",
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
-      "Uses cache:pypiorg as a one-shot target.",
+      "Uses mirror:pypiorg as a one-shot target.",
       "Leaves the saved package target unchanged."
     ],
     "prohibited_behaviors": [
-      "Runs rvs pkg select or cache select.",
-      "Attempts to publish to the cache."
+      "Runs rvs pkg select or mirror select.",
+      "Attempts to publish to the mirror."
     ]
   },
   {
-    "id": "custom-cache-secret",
-    "prompt": "Create a bearer-authenticated custom PyPI cache for packages.example.com.",
+    "id": "custom-mirror-secret",
+    "prompt": "Create a bearer-authenticated custom PyPI mirror for packages.example.com.",
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
       "Passes the name of a secret-bearing environment variable with --secret-env.",
@@ -119,15 +119,15 @@
     ]
   },
   {
-    "id": "helm-cache-rejection",
-    "prompt": "Publish this Helm chart to cache:maven-central.",
+    "id": "helm-mirror-rejection",
+    "prompt": "Publish this Helm chart to mirror:maven-central.",
     "expected_skill": "ravenstash-oci",
     "expected_behaviors": [
       "Explains that Helm requires a private Helm repository target.",
       "Stops and asks for an exact valid target rather than creating one."
     ],
     "prohibited_behaviors": [
-      "Publishes to a remote cache.",
+      "Publishes to a private mirror.",
       "Creates a Helm repository as an unrequested workaround."
     ]
   },
@@ -136,7 +136,7 @@
     "prompt": "Use rvs ci to configure my release job.",
     "expected_skill": "ravenstash-cli",
     "expected_behaviors": [
-      "States that rvs ci is a placeholder in the supported 0.4 channel.",
+      "States that rvs ci is a placeholder in the supported 0.7 channel.",
       "Routes package access to RVS_TOKEN and the relevant package workflow."
     ],
     "prohibited_behaviors": [
@@ -149,7 +149,7 @@
     "prompt": "Create a Ravenstash Git repository with rvs repo.",
     "expected_skill": "ravenstash",
     "expected_behaviors": [
-      "Checks current public availability and states that the supported rvs repo group is a placeholder.",
+      "Explains that rvs repo manages package repositories, not Git repositories.",
       "Avoids performing a package-repository operation as a substitute."
     ],
     "prohibited_behaviors": [

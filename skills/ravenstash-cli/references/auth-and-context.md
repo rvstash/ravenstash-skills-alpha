@@ -1,7 +1,15 @@
 # Authentication and context
 
 Load this reference for interactive login, automation authentication, multiple
-profiles, acting-account selection, or package-target resolution.
+local profiles, acting-account selection, or package-target resolution.
+
+Keep four layers distinct:
+
+- the authenticated **user** is the audit actor;
+- a **local profile** is named CLI configuration and a credential slot;
+- the **acting account** is the personal or organization authorization and
+  metering boundary; and
+- the **package target** is a repository or private mirror inside that account.
 
 ## Interactive login
 
@@ -17,17 +25,20 @@ Device login requires the user to review and approve the browser request. Do
 not automate that approval. The server may reduce a requested duration to its
 current policy.
 
-Manage profiles without exposing credentials:
+Inspect and manage local profiles without exposing credentials:
 
 ```bash
-rvs auth profile list
-rvs auth profile switch work
-rvs auth profile rename old-name new-name
+rvs profile list
+rvs profile current
+rvs profile use work
+rvs profile rename old-name new-name
+rvs profile delete old-name
 rvs auth logout
 ```
 
-Profile switching is persistent local state. Use `--profile` or wrapper
-`--rvs-profile` for a one-shot operation instead.
+With shell integration, profile selection is local to that shell; otherwise it
+updates the persisted default. Use `--profile` or wrapper `--rvs-profile` for a
+one-shot operation instead. `rvs profile current` reports the selection source.
 
 ## Automation
 
@@ -46,12 +57,16 @@ repository, command transcript, shell profile, or `~/.rvs/config.toml`.
 ```bash
 rvs account list
 rvs account current
-rvs account switch personal
-rvs account switch org:acme
+rvs account use personal
+rvs account use org:acme
+rvs context current
 ```
 
-An account switch is persistent for the active profile. For one operation, use
-the command's `--account` option or a wrapper's `--rvs-account` option.
+With shell integration, account selection is local to that shell; otherwise it
+is persisted in the selected local profile. For one operation, use the command's
+`--account` option or a wrapper's `--rvs-account` option. `rvs context current`
+verifies the user and shows the effective profile, account, target, and selection
+provenance.
 
 ## Package target
 
@@ -61,14 +76,14 @@ rvs pkg select platform/backend
 rvs pkg clear
 ```
 
-Target forms are `workspace/repository`, `cache:source`, and
-`custom-cache:name`. Prefer one-shot `--target` or wrapper `--rvs-target` when
+Target forms are `workspace/repository`, `mirror:source`, and
+`custom-mirror:name`. Prefer one-shot `--target` or wrapper `--rvs-target` when
 the user did not ask to change saved selection.
 
 Resolution precedence is:
 
 1. Explicit one-shot target.
-2. Selected target for the active profile and account.
+2. Selected target for the effective local profile and acting account.
 3. Legacy per-kind private-repository default.
 4. For supported reads, the account's enabled official cache.
 

@@ -6,7 +6,9 @@ target selection, registry support, or availability.
 ## Ownership and content
 
 - A user is one person with a Ravenstash login.
-- An account is the personal account or organization authorizing the operation
+- A local profile is named CLI configuration and credential association; it is
+  not the authenticated user.
+- An acting account is the personal account or organization authorizing the operation
   and receiving its usage attribution.
 - A workspace is an account-owned repository namespace and organization-member
   permission boundary.
@@ -14,33 +16,35 @@ target selection, registry support, or availability.
   more registry kinds.
 - A repository lane is one registry kind inside a repository. PyPI, npm, Maven,
   Container, and Helm are separate lanes even when they share a repository.
-- A remote cache is an account-scoped, read-only PyPI, npm, or Maven source. It
-  is not a private repository and cannot accept publishing.
+- A private mirror is an account-scoped, read-only PyPI, npm, or Maven access
+  surface backed by an official or custom remote cache. It is not a private
+  repository and cannot accept publishing.
 
 ## Target forms
 
 | Form | Meaning | Capabilities |
 | --- | --- | --- |
 | `workspace/repository` | Private repository | Read and publish for enabled lanes |
-| `cache:source` | Ravenstash-curated official cache | Read only |
-| `custom-cache:name` | Account-defined custom cache | Read only |
+| `mirror:source` | Ravenstash-curated official private mirror | Read only |
+| `custom-mirror:name` | Account-defined custom private mirror | Read only |
 
 An explicit target is one-shot and must not change saved selection. A saved
-target remains scoped to its login profile and immutable account identity.
+target remains scoped to its local profile and immutable acting-account identity.
 
 ## Registry boundaries
 
-- PyPI, npm, and Maven support private repositories and direct remote caches.
+- PyPI, npm, and Maven support private repositories and private mirrors.
 - Container and Helm are separate private-only OCI registry kinds.
 - Container and Helm share the `oci.rvsta.sh` host but never become one lane.
 - ORAS can address either OCI kind, so the kind must be explicit.
-- A cache can be connected behind a compatible private repository. The
+- A mirror's backing remote cache can be connected behind a compatible private
+  repository. The
   attachment copies its age setting when created and is then managed
-  independently from the direct cache default.
+  independently from the mirror default.
 
 ## Availability floor for these skills
 
-These skills cover Ravenstash Packages and the `rvs` 0.4 compatibility channel.
-They do not make the placeholder `rvs repo` or `rvs ci` groups executable and
-do not describe future public repositories as available. Check current public
-documentation before making broader product-availability claims.
+These skills cover Ravenstash Packages and the `rvs` 0.7 compatibility channel.
+`rvs repo` manages package repositories; `rvs ci` remains a placeholder and does
+not make a future CI product available. Check current public documentation before
+making broader product-availability claims.

@@ -8,10 +8,10 @@ publish work.
 ```bash
 rvs npm --rvs-target platform/packages install @acme/design-system
 rvs npm --rvs-target platform/packages ci
-rvs npm --rvs-target cache:npmjs install lodash
+rvs npm --rvs-target mirror:npmjs install lodash
 ```
 
-Direct caches support reads only. Keep Ravenstash wrapper options before the
+Private mirrors support reads only. Keep Ravenstash wrapper options before the
 native npm arguments. A one-shot target must not change saved selection.
 
 ## Publish

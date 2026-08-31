@@ -11,23 +11,23 @@ rvs pip --rvs-target platform/packages install internal-sdk
 rvs uv --rvs-target platform/packages sync
 ```
 
-Use a direct official cache once:
+Use an official private mirror once:
 
 ```bash
-rvs pip --rvs-target cache:pypiorg install requests
+rvs pip --rvs-target mirror:pypiorg install requests
 ```
 
 Ravenstash must be the primary index for a selected Ravenstash resolution
 workflow. Do not recommend pip `--extra-index-url`; dependency-confusion rules
 can allow the unintended index to win. Use a repository upstream attachment or
-an explicit direct-cache target instead.
+an explicit mirror target instead.
 
 `rvs pkg pypi install` is also valid for a Ravenstash-owned install helper. Use
 the native wrapper when preserving the caller's pip or uv command is the goal.
 
 ## Publish
 
-Publishing requires a private PyPI repository, never a cache:
+Publishing requires a private PyPI repository, never a mirror:
 
 ```bash
 rvs twine --rvs-target platform/releases upload dist/*

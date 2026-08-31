@@ -1,17 +1,17 @@
 ---
 name: ravenstash-packages
-description: Use Ravenstash private PyPI, npm, and Maven repositories and read-only remote caches through rvs and native package tools. Use for repository or cache discovery and management, dependency installation, package publishing, lifecycle operations, upstream attachment, and CI package access; do not use for Container or Helm OCI workflows.
+description: Use Ravenstash private PyPI, npm, and Maven repositories and read-only private mirrors through rvs and native package tools. Use for repository or mirror discovery and management, dependency installation, package publishing, lifecycle operations, upstream attachment, and CI package access; do not use for Container or Helm OCI workflows.
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.2.0"
-  ravenstash-rvs-compatibility: "0.5.0 or later in the 0.5 channel"
+  version: "0.3.0"
+  ravenstash-rvs-compatibility: "0.7.0 or later in the 0.7 channel"
 ---
 
 # Ravenstash Packages
 
-Use Ravenstash Packages without collapsing private repositories, direct remote
-caches, accounts, or registry kinds into one implicit destination.
+Use Ravenstash Packages without collapsing private repositories, private
+mirrors, acting accounts, or registry kinds into one implicit destination.
 
 ## Preflight
 
@@ -23,12 +23,12 @@ caches, accounts, or registry kinds into one implicit destination.
 4. Resolve the target with `rvs pkg current`, a one-shot `--target`, or wrapper
    `--rvs-target`. Prefer the one-shot form when the user did not request a
    saved selection change.
-5. Resolve the registry kind. Never publish to a cache or use a package-release
+5. Resolve the registry kind. Never publish to a mirror or use a package-release
    workflow against a Container or Helm lane.
 
 ## Route the workflow
 
-- For repository, package lifecycle, upstream attachment, or cache management,
+- For repository, package lifecycle, upstream attachment, or mirror management,
   read [references/repositories-and-caches.md](references/repositories-and-caches.md).
 - For Python installs or publishing, read [references/pypi.md](references/pypi.md).
 - For npm installs or publishing, read [references/npm.md](references/npm.md).
@@ -60,10 +60,10 @@ The wrappers must not cause a skill or agent to copy tokens into `.npmrc`,
 ## Mutation boundary
 
 - Listing, showing, resolving URLs, and checking current context are read-only.
-- Creating or renaming repositories/caches, changing defaults or upstreams,
+- Creating or renaming repositories/mirrors, changing defaults or upstreams,
   selecting saved context, configuring persistent native clients, publishing,
   yanking, and deleting mutate local or remote state.
-- Before a mutation, report the exact account, workspace/repository or cache,
+- Before a mutation, report the exact acting account, workspace/repository or mirror,
   registry kind, package/version when applicable, and intended change.
 - Do not pass `--yes` to deletion commands merely to suppress the CLI's
   confirmation. Use it only when the user explicitly authorized that exact

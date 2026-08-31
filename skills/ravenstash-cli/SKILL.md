@@ -1,11 +1,11 @@
 ---
 name: ravenstash-cli
-description: Install, update, authenticate, inspect, and troubleshoot the Ravenstash rvs CLI, including login profiles, acting accounts, package targets, shell integration, structured output, and managed Python, Node.js, or Java runtimes. Use for rvs setup and local CLI context; use a registry workflow skill for package or OCI operations.
+description: Install, update, authenticate, inspect, and troubleshoot the Ravenstash rvs CLI, including local profiles, acting accounts, package targets, shell integration, structured output, and managed Python, Node.js, or Java runtimes. Use for rvs setup and local CLI context; use a registry workflow skill for package or OCI operations.
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.2.0"
-  ravenstash-rvs-compatibility: "0.5.0 or later in the 0.5 channel"
+  version: "0.3.0"
+  ravenstash-rvs-compatibility: "0.7.0 or later in the 0.7 channel"
 ---
 
 # Ravenstash CLI
@@ -17,17 +17,19 @@ lock files, builds, and dependency resolution.
 ## Preflight
 
 1. Check for the CLI with `command -v rvs`.
-2. If present, run `rvs --version`. This skill targets the 0.5 compatibility
+2. If present, run `rvs --version`. This skill targets the 0.7 compatibility
    channel; if the installed command differs, use its help and current release
    notes rather than forcing these examples.
 3. Discover exact syntax with `rvs --help` and `rvs <group> --help`. Never guess
    a subcommand or option.
 4. Before authenticated work, inspect `rvs auth status`, `rvs auth whoami`,
-   `rvs account current`, and, for package work, `rvs pkg current` as needed.
+   `rvs profile current`, `rvs account current`, and, when the complete tuple
+   matters, `rvs context current`. For package work, use `rvs pkg current` as
+   needed.
 
 For installation, signed updates, runtime management, or shell changes, read
 [references/install-update-runtime.md](references/install-update-runtime.md).
-For login profiles, accounts, and target precedence, read
+For local profiles, acting accounts, and target precedence, read
 [references/auth-and-context.md](references/auth-and-context.md).
 
 ## Structured output
@@ -58,7 +60,8 @@ the command or assume native output becomes JSON.
 
 ## Context safety
 
-- Keep login profile, acting account, target, and registry kind separate.
+- Keep authenticated user, local profile, acting account, target, and registry
+  kind separate.
 - Prefer one-shot `--profile`, `--account`, and `--target` options when the user
   asks for one operation in a different context. Do not persist a switch unless
   requested.
@@ -69,12 +72,13 @@ the command or assume native output becomes JSON.
 
 ## Unsupported groups
 
-In the 0.5 channel, `rvs repo` manages package repositories and `rvs ci` remains
+In the 0.7 channel, `rvs repo` manages package repositories and `rvs ci` remains
 a registered placeholder. Do not invent CI subcommands. CI package access uses
 an automation token and the documented package-manager or `rvs` workflow.
 
 ## Completion
 
-Report the installed version, active profile/account/target when relevant, the
+Report the installed version and effective local profile, acting account, and
+target when relevant, the
 verification command used, and any local files or shell configuration changed.
 Never include credential material.

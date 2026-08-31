@@ -7,11 +7,11 @@ work.
 
 ```bash
 rvs mvn --rvs-target platform/packages verify
-rvs mvn --rvs-target cache:maven-central test
+rvs mvn --rvs-target mirror:maven-central test
 rvs pkg maven install com.example:lib:1.0.0 --repo platform/packages
 ```
 
-Direct caches support reads only. Maven remains responsible for the project
+Private mirrors support reads only. Maven remains responsible for the project
 model, dependency graph, lifecycle, and build output.
 
 ## Deploy

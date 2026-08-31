@@ -1,11 +1,11 @@
 ---
 name: ravenstash-oci
-description: Use Ravenstash private Container and Helm OCI repository lanes through rvs, Docker, Helm, and ORAS with exact target and registry-kind selection and ephemeral credentials. Use for OCI references, image push or pull, Helm chart publish or install, and ORAS discovery; do not use for PyPI, npm, Maven, or remote-cache workflows.
+description: Use Ravenstash private Container and Helm OCI repository lanes through rvs, Docker, Helm, and ORAS with exact target and registry-kind selection and ephemeral credentials. Use for OCI references, image push or pull, Helm chart publish or install, and ORAS discovery; do not use for PyPI, npm, Maven, or private-mirror workflows.
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.2.0"
-  ravenstash-rvs-compatibility: "0.5.0 or later in the 0.5 channel"
+  version: "0.3.0"
+  ravenstash-rvs-compatibility: "0.7.0 or later in the 0.7 channel"
 ---
 
 # Ravenstash OCI
@@ -53,7 +53,7 @@ identifiers. Never reconstruct those identifiers from display names.
 
 ## Target boundary
 
-- OCI targets are exact private repositories. `cache:` and `custom-cache:`
+- OCI targets are exact private repositories. `mirror:` and `custom-mirror:`
   targets are invalid.
 - A one-shot `--rvs-target` must not change saved selection.
 - Pull, inspect, show, and discover operations are normally reads. Push and

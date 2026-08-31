@@ -1,6 +1,6 @@
-# Repositories and remote caches
+# Repositories and private mirrors
 
-Load for repository discovery or mutation, package lifecycle work, remote-cache
+Load for repository discovery or mutation, package lifecycle work, private-mirror
 management, or upstream attachment.
 
 ## Private repositories
@@ -35,33 +35,35 @@ For deletion, keep the CLI confirmation unless the exact resolved deletion was
 already authorized. Do not infer retention or recovery guarantees; point to
 current public documentation.
 
-## Remote caches
+## Private mirrors
 
-Remote caches are read-only and support only PyPI, npm, and Maven. Official and
-custom targets remain distinct:
-
-```bash
-rvs pkg cache list
-rvs pkg cache add pypiorg --select
-rvs pkg cache select pypiorg
-rvs pkg cache select --custom company-python
-```
-
-Use a cache once without changing the saved target:
+Private mirrors are read-only and support only PyPI, npm, and Maven. Each is
+backed by an official or customer-defined remote cache, and their targets remain
+distinct:
 
 ```bash
-rvs pkg --target cache:pypiorg install requests
-rvs pkg --target custom-cache:company-python install internal-sdk
+rvs pkg mirror list
+rvs pkg mirror add pypiorg --select
+rvs pkg mirror select pypiorg
+rvs pkg mirror select --custom company-python
 ```
 
-When creating a protected custom cache, pass the secret by environment-variable
-name, never by value on the command line:
+Use a mirror once without changing the saved target:
+
+```bash
+rvs pkg --target mirror:pypiorg install requests
+rvs pkg --target custom-mirror:company-python install internal-sdk
+```
+
+When creating a protected custom mirror, pass the secret by
+environment-variable name, never by value on the command line:
 
 ```bash
 export UPSTREAM_TOKEN="${TOKEN_FROM_SECRET_STORE}"
-rvs pkg cache create-custom company-python \
+rvs pkg mirror create-custom company-python \
   --kind pypi \
   --api-url https://packages.example.com/simple/ \
+  --publication-control user-controlled \
   --auth-scheme bearer \
   --secret-env UPSTREAM_TOKEN \
   --allowed-host packages.example.com
@@ -70,15 +72,17 @@ rvs pkg cache create-custom company-python \
 Do not disclose or persist the environment value. Check current documentation
 for plan or role eligibility rather than encoding it in the skill.
 
-## Attach a cache behind a repository
+## Attach a backing remote cache to a repository
 
 ```bash
-rvs pkg cache show CACHE_ID
-rvs pkg repo set-upstream platform/packages CACHE_ID --min-age-hours 24
+rvs pkg mirror show CACHE_ID
+rvs pkg repo upstream add platform/packages pypi \
+  --remote-cache CACHE_ID \
+  --min-age-hours 24
 ```
 
 The attachment copies the cache's age setting at creation and is then managed
-independently. A later direct-cache default change must not be described as
+independently. A later mirror default change must not be described as
 automatically changing existing attachments.
 
 ## Package lifecycle
