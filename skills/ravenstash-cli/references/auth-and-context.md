@@ -1,7 +1,7 @@
 # Authentication and context
 
 Load this reference for interactive login, automation authentication, multiple
-local profiles, acting-account selection, or package-target resolution.
+local profiles, acting-account selection, or artifact-target resolution.
 
 Keep four layers distinct:
 
@@ -9,7 +9,7 @@ Keep four layers distinct:
 - a **local profile** is named CLI configuration and a credential slot;
 - the **acting account** is the personal or organization authorization and
   metering boundary; and
-- the **package target** is a repository or private mirror inside that account.
+- the **artifact target** is a repository or private mirror inside that account.
 
 ## Interactive login
 
@@ -36,8 +36,7 @@ rvs profile delete old-name
 rvs auth logout
 ```
 
-With shell integration, profile selection is local to that shell; otherwise it
-updates the persisted default. Use `--profile` or wrapper `--rvs-profile` for a
+Profile selection updates the persisted default. Use `--profile` or wrapper `--rvs-profile` for a
 one-shot operation instead. `rvs profile current` reports the selection source.
 
 ## Automation
@@ -62,21 +61,20 @@ rvs account use org:acme
 rvs context current
 ```
 
-With shell integration, account selection is local to that shell; otherwise it
-is persisted in the selected local profile. For one operation, use the command's
+Account selection is persisted in the selected local profile. For one operation, use the command's
 `--account` option or a wrapper's `--rvs-account` option. `rvs context current`
 verifies the user and shows the effective profile, account, target, and selection
 provenance.
 
-## Package target
+## Artifact target
 
 ```bash
-rvs pkg current
-rvs pkg select platform/backend
-rvs pkg clear
+rvs art current
+rvs art select platform/backend
+rvs art clear
 ```
 
-Target forms are `workspace/repository`, `mirror:source`, and
+Target forms are `namespace/repository`, `mirror:source`, and
 `custom-mirror:name`. Prefer one-shot `--target` or wrapper `--rvs-target` when
 the user did not ask to change saved selection.
 

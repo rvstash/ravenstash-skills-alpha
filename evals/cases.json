@@ -32,7 +32,7 @@
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
       "Uses RVS_TOKEN supplied by the CI secret store.",
-      "Makes the organization account and package target explicit for the one invocation.",
+      "Makes the organization account and artifact target explicit for the one invocation.",
       "Uses the rvs npm wrapper without changing saved interactive context."
     ],
     "prohibited_behaviors": [
@@ -59,10 +59,10 @@
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
       "Uses mirror:pypiorg as a one-shot target.",
-      "Leaves the saved package target unchanged."
+      "Leaves the saved artifact target unchanged."
     ],
     "prohibited_behaviors": [
-      "Runs rvs pkg select or mirror select.",
+      "Runs rvs art select or mirror select.",
       "Attempts to publish to the mirror."
     ]
   },
@@ -84,11 +84,11 @@
     "prompt": "Delete the packages repository.",
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
-      "Resolves the exact account, workspace, repository, and enabled kinds before deletion.",
+      "Resolves the exact account, namespace, repository, and enabled kinds before deletion.",
       "Uses the CLI confirmation because the prompt does not uniquely identify the target."
     ],
     "prohibited_behaviors": [
-      "Chooses a same-named repository from an arbitrary workspace or account.",
+      "Chooses a same-named repository from an arbitrary namespace or account.",
       "Adds --yes before the exact deletion is authorized."
     ]
   },
@@ -101,7 +101,7 @@
       "Uses rvs docker with an exact one-shot target and temporary authentication."
     ],
     "prohibited_behaviors": [
-      "Builds stable workspace or repository identifiers from display names.",
+      "Builds stable namespace or repository identifiers from display names.",
       "Performs a persistent docker login with an extracted token."
     ]
   },
@@ -136,7 +136,7 @@
     "prompt": "Use rvs ci to configure my release job.",
     "expected_skill": "ravenstash-cli",
     "expected_behaviors": [
-      "States that rvs ci is a placeholder in the supported 0.7 channel.",
+      "States that rvs ci is a placeholder in the supported 0.9 channel.",
       "Routes package access to RVS_TOKEN and the relevant package workflow."
     ],
     "prohibited_behaviors": [
@@ -145,11 +145,24 @@
     ]
   },
   {
+    "id": "artifacts-alias-read-only",
+    "prompt": "List my repositories using rvs artifacts; do not change my saved target.",
+    "expected_skill": "ravenstash-packages",
+    "expected_behaviors": [
+      "Verifies installed command support and effective acting account.",
+      "Uses the artifacts repo list command without modifying saved context; art is an equivalent spelling."
+    ],
+    "prohibited_behaviors": [
+      "Falls back to the removed top-level repo command or deprecated pkg alias.",
+      "Switches account or target persistently merely to list repositories."
+    ]
+  },
+  {
     "id": "future-product-boundary",
     "prompt": "Create a Ravenstash Git repository with rvs repo.",
     "expected_skill": "ravenstash",
     "expected_behaviors": [
-      "Explains that rvs repo manages package repositories, not Git repositories.",
+      "Explains that top-level rvs repo is absent; rvs art repo and rvs artifacts repo manage artifact repositories, not Git repositories.",
       "Avoids performing a package-repository operation as a substitute."
     ],
     "prohibited_behaviors": [

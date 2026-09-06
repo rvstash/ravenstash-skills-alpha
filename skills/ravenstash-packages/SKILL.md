@@ -4,23 +4,27 @@ description: Use Ravenstash private PyPI, npm, and Maven repositories and read-o
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.3.0"
-  ravenstash-rvs-compatibility: "0.7.0 or later in the 0.7 channel"
+  version: "0.4.0"
+  ravenstash-rvs-compatibility: "0.9.3 or later in the 0.9 channel"
 ---
 
 # Ravenstash Packages
 
-Use Ravenstash Packages without collapsing private repositories, private
+Use the package-release lanes of Ravenstash Artifacts without collapsing private repositories, private
 mirrors, acting accounts, or registry kinds into one implicit destination.
 
 ## Preflight
+
+Repository management lives under `rvs art repo` and its identical full-name
+alias `rvs artifacts repo`. The product also supports Container and Helm, but
+those lanes use the separate OCI workflow.
 
 1. Run `rvs --version` and use `rvs <group> --help` for exact syntax.
 2. Inspect authentication with `rvs auth status` and, when identity matters,
    `rvs auth whoami`.
 3. Resolve the acting account with `rvs account current` or an explicit
    `--account`.
-4. Resolve the target with `rvs pkg current`, a one-shot `--target`, or wrapper
+4. Resolve the target with `rvs art current`, a one-shot `--target`, or wrapper
    `--rvs-target`. Prefer the one-shot form when the user did not request a
    saved selection change.
 5. Resolve the registry kind. Never publish to a mirror or use a package-release
@@ -63,7 +67,7 @@ The wrappers must not cause a skill or agent to copy tokens into `.npmrc`,
 - Creating or renaming repositories/mirrors, changing defaults or upstreams,
   selecting saved context, configuring persistent native clients, publishing,
   yanking, and deleting mutate local or remote state.
-- Before a mutation, report the exact acting account, workspace/repository or mirror,
+- Before a mutation, report the exact acting account, namespace/repository or mirror,
   registry kind, package/version when applicable, and intended change.
 - Do not pass `--yes` to deletion commands merely to suppress the CLI's
   confirmation. Use it only when the user explicitly authorized that exact

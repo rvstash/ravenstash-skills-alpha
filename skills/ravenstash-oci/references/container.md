@@ -13,7 +13,7 @@ rvs oci-reference \
 ```
 
 Use the exact returned reference in subsequent commands. Do not derive stable
-workspace or repository identifiers from display names.
+namespace or repository identifiers from display names.
 
 ## Read and write
 

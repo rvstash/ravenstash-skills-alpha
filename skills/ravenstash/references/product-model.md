@@ -10,7 +10,7 @@ target selection, registry support, or availability.
   not the authenticated user.
 - An acting account is the personal account or organization authorizing the operation
   and receiving its usage attribution.
-- A workspace is an account-owned repository namespace and organization-member
+- A namespace is an account-owned cross-product naming and organization-member
   permission boundary.
 - A repository is a private logical content namespace that can enable one or
   more registry kinds.
@@ -24,7 +24,7 @@ target selection, registry support, or availability.
 
 | Form | Meaning | Capabilities |
 | --- | --- | --- |
-| `workspace/repository` | Private repository | Read and publish for enabled lanes |
+| `namespace/repository` | Private repository | Read and publish for enabled lanes |
 | `mirror:source` | Ravenstash-curated official private mirror | Read only |
 | `custom-mirror:name` | Account-defined custom private mirror | Read only |
 
@@ -44,7 +44,8 @@ target remains scoped to its local profile and immutable acting-account identity
 
 ## Availability floor for these skills
 
-These skills cover Ravenstash Packages and the `rvs` 0.7 compatibility channel.
-`rvs repo` manages package repositories; `rvs ci` remains a placeholder and does
+These skills cover Ravenstash Artifacts with `rvs` 0.9.3+ in the 0.9 channel.
+`rvs art repo` and `rvs artifacts repo` manage repositories for packages, container
+images, and Helm charts. Top-level `rvs repo` is absent; `rvs ci` remains a placeholder and does
 not make a future CI product available. Check current public documentation before
 making broader product-availability claims.

@@ -1,11 +1,11 @@
 ---
 name: ravenstash-cli
-description: Install, update, authenticate, inspect, and troubleshoot the Ravenstash rvs CLI, including local profiles, acting accounts, package targets, shell integration, structured output, and managed Python, Node.js, or Java runtimes. Use for rvs setup and local CLI context; use a registry workflow skill for package or OCI operations.
+description: Install, update, authenticate, inspect, and troubleshoot the Ravenstash rvs CLI, including local profiles, acting accounts, artifact targets, shell integration, structured output, and managed Python, Node.js, or Java runtimes. Use for rvs setup and local CLI context; use a registry workflow skill for package or OCI operations.
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.3.0"
-  ravenstash-rvs-compatibility: "0.7.0 or later in the 0.7 channel"
+  version: "0.4.0"
+  ravenstash-rvs-compatibility: "0.9.3 or later in the 0.9 channel"
 ---
 
 # Ravenstash CLI
@@ -17,14 +17,14 @@ lock files, builds, and dependency resolution.
 ## Preflight
 
 1. Check for the CLI with `command -v rvs`.
-2. If present, run `rvs --version`. This skill targets the 0.7 compatibility
+2. If present, run `rvs --version`. This skill targets the 0.9 compatibility
    channel; if the installed command differs, use its help and current release
    notes rather than forcing these examples.
 3. Discover exact syntax with `rvs --help` and `rvs <group> --help`. Never guess
    a subcommand or option.
 4. Before authenticated work, inspect `rvs auth status`, `rvs auth whoami`,
    `rvs profile current`, `rvs account current`, and, when the complete tuple
-   matters, `rvs context current`. For package work, use `rvs pkg current` as
+   matters, `rvs context current`. For package work, use `rvs art current` as
    needed.
 
 For installation, signed updates, runtime management, or shell changes, read
@@ -39,7 +39,7 @@ Place the global flag before the command:
 ```bash
 rvs --json auth status
 rvs --json account current
-rvs --json pkg repo list
+rvs --json art repo list
 ```
 
 Ravenstash-owned output is newline-delimited JSON. Output from native
@@ -67,13 +67,15 @@ the command or assume native output becomes JSON.
   requested.
 - If a selector is ambiguous, stop and present the stable choices. Never choose
   by name similarity.
-- Shell prompt integration contains non-secret context only, but installing it
-  changes a shell startup file and requires user intent.
+- Runtime shell shims change a startup file and require user intent. The former
+  context-prompt `rvs shell` commands are removed; do not reinstall them.
 
 ## Unsupported groups
 
-In the 0.7 channel, `rvs repo` manages package repositories and `rvs ci` remains
-a registered placeholder. Do not invent CI subcommands. CI package access uses
+`rvs art` and `rvs artifacts` invoke the same product group, including its `repo`
+subgroup. Top-level `rvs repo` is absent. Do not teach the temporary hidden
+`rvs pkg` spelling; older installations need a supported update, not a fallback.
+`rvs ci` remains a registered placeholder. Do not invent CI subcommands. CI package access uses
 an automation token and the documented package-manager or `rvs` workflow.
 
 ## Completion

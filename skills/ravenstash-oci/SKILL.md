@@ -4,8 +4,8 @@ description: Use Ravenstash private Container and Helm OCI repository lanes thro
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.3.0"
-  ravenstash-rvs-compatibility: "0.7.0 or later in the 0.7 channel"
+  version: "0.4.0"
+  ravenstash-rvs-compatibility: "0.9.3 or later in the 0.9 channel"
 ---
 
 # Ravenstash OCI
@@ -18,7 +18,7 @@ lane.
 
 1. Run `rvs --version` and discover current syntax with `rvs <group> --help`.
 2. Check `rvs auth status` and use `rvs auth whoami` when identity matters.
-3. Resolve the acting account and exact `workspace/repository` target.
+3. Resolve the acting account and exact `namespace/repository` target.
 4. Resolve `container` or `helm`. ORAS always needs an explicit kind.
 5. Confirm that the requested native tool is installed.
 
@@ -28,7 +28,7 @@ Read [references/container.md](references/container.md) for Docker image work,
 
 ## Stable reference construction
 
-Use `rvs oci-reference` rather than inventing workspace or repository refs:
+Use `rvs oci-reference` rather than inventing namespace or repository refs:
 
 ```bash
 rvs oci-reference \
@@ -38,7 +38,7 @@ rvs oci-reference \
   --reference latest
 ```
 
-The returned reference contains stable Ravenstash workspace and repository
+The returned reference contains stable Ravenstash namespace and repository
 identifiers. Never reconstruct those identifiers from display names.
 
 ## Credential boundary

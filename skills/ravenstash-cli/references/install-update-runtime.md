@@ -65,7 +65,7 @@ and do not assume it should be committed.
 ## Shell changes
 
 - `rvs runtime setup-shell` installs runtime shims.
-- `rvs shell setup` adds visible profile, account, and target context.
+- The former `rvs shell setup` context prompt is removed; do not invoke it.
 
-Both can edit a shell startup file. Inspect or report the change and do not
+Runtime shim setup can edit a shell startup file. Inspect or report the change and do not
 apply it merely because a single command needs environment variables.
