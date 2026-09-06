@@ -39,7 +39,7 @@ public hosts, documentation-safe names, and obvious placeholders.
 - Require the exact local profile, acting account, target, registry kind, and
   object identity where ambiguity could affect another resource.
 - Never include token values or instructions to persist credentials.
-- In the prepared 0.9.3+ channel, `rvs art repo` and `rvs artifacts repo`
+- In the supported 0.11.x channel, `rvs art repo` and `rvs artifacts repo`
   manage artifact repositories; top-level `rvs repo` is absent and `rvs ci`
   remains a placeholder. Do not invent CI subcommands or a source-repository
   product.

@@ -4,10 +4,9 @@ Official Agent Skills for Ravenstash products and the `rvs` developer CLI.
 This repository is a private preview while the initial workflows and evals are
 stabilized.
 
-Version 0.4.0 is prepared for the coordinated Artifacts cutover and requires
-`rvs` 0.9.3 or newer in the 0.9 channel. It is not a claim that this CLI release
-has been published. Validate and publish this skill bundle only alongside the
-compatible CLI release; installed CLI help remains the execution authority.
+The current 0.4 skill source targets released `rvs` 0.11.x. Validate and publish
+the bundle only after checking it against the compatible CLI; installed CLI help
+remains the execution authority.
 
 The skills follow the [Agent Skills specification](https://agentskills.io/) and
 are designed for Codex, GitHub Copilot, Claude Code, Cursor, and other compatible

@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Ravenstash
   version: "0.4.0"
-  ravenstash-rvs-compatibility: "0.9.3 or later in the 0.9 channel"
+  ravenstash-rvs-compatibility: "0.11.x"
 ---
 
 # Ravenstash OCI

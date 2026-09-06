@@ -57,8 +57,8 @@ availability.
 - Resolve the local profile, acting account, target, and registry kind before
   any operation that could affect remote state. Never substitute a same-named
   object from another account or namespace.
-- Do not imply that a roadmap product or placeholder CLI group is usable. In
-  supported 0.9.3+ surface uses `rvs art repo` or `rvs artifacts repo`;
+- Do not imply that a roadmap product or placeholder CLI group is usable. The
+  supported 0.11.x surface uses `rvs art repo` or `rvs artifacts repo`;
   top-level `rvs repo` is absent and `rvs ci` remains a placeholder.
 - Do not invent billing, quota, retention, anonymous access, or package-security
   behavior. Refer volatile policy questions to current public documentation.

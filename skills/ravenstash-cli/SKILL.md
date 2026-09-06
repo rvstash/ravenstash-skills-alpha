@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Ravenstash
   version: "0.4.0"
-  ravenstash-rvs-compatibility: "0.9.3 or later in the 0.9 channel"
+  ravenstash-rvs-compatibility: "0.11.x"
 ---
 
 # Ravenstash CLI
@@ -17,7 +17,7 @@ lock files, builds, and dependency resolution.
 ## Preflight
 
 1. Check for the CLI with `command -v rvs`.
-2. If present, run `rvs --version`. This skill targets the 0.9 compatibility
+2. If present, run `rvs --version`. This skill targets the 0.11 compatibility
    channel; if the installed command differs, use its help and current release
    notes rather than forcing these examples.
 3. Discover exact syntax with `rvs --help` and `rvs <group> --help`. Never guess

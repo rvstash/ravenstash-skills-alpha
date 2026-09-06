@@ -44,7 +44,7 @@ target remains scoped to its local profile and immutable acting-account identity
 
 ## Availability floor for these skills
 
-These skills cover Ravenstash Artifacts with `rvs` 0.9.3+ in the 0.9 channel.
+These skills cover Ravenstash Artifacts with `rvs` 0.11.x.
 `rvs art repo` and `rvs artifacts repo` manage repositories for packages, container
 images, and Helm charts. Top-level `rvs repo` is absent; `rvs ci` remains a placeholder and does
 not make a future CI product available. Check current public documentation before
