@@ -1,34 +1,42 @@
 # Helm OCI workflows
 
-Load for Helm chart publication, inspection, pull, or install against a
-Ravenstash Helm lane.
+Use the selected repository for Helm chart work when the installed CLI supports
+shorthand. For an older CLI, use full `oci://` references from `rvs oci-reference`.
+Helm requires the Helm kind even when a repository also supports Container.
 
-## Resolve the reference
-
-```bash
-rvs oci-reference \
-  --kind helm \
-  --target platform/deployment-charts \
-  --oci-path charts/api \
-  --reference 1.2.3
-```
-
-Use an `oci://` reference where Helm requires it. Keep the chart name and
-version separate from the Ravenstash repository display name.
-
-## Read
+## Read and render
 
 ```bash
-rvs helm --rvs-target platform/deployment-charts show chart \
-  oci://oci.rvsta.sh/in_abcdefgh/r_3456789a/charts/api \
-  --version 1.2.3
+rvs art select platform/deployment-charts
+rvs helm show chart charts/api --version 1.2.3
+rvs helm pull charts/api --version 1.2.3
+rvs helm template preview charts/api --version 1.2.3
 ```
 
-## Publish
+Selection changes saved metadata; use `--rvs-target` for an authorized one-shot
+target without changing selection. Short paths are private, including names
+matching local directories or public aliases such as `bitnami/nginx`. Use explicit
+local paths (`./api`) for local charts and plain Helm for configured public
+aliases. Full OCI/HTTP URLs and explicit `--repo` keep their native meaning.
+No private miss falls back publicly.
 
-A Helm push creates remote state. Confirm the packaged chart, metadata version,
-exact target, and OCI path before invoking the native command through `rvs
-helm`. Do not publish to a Container lane merely because it shares the same
-host.
+## Publish or deploy
 
-Remote caches are not supported for Helm repositories.
+Within the user's authorized publication scope:
+
+```bash
+rvs helm push api-1.2.3.tgz
+rvs helm push api-1.2.3.tgz team/backend
+```
+
+The first destination is the selected repository root; the second adds a
+subdirectory. Helm appends the chart metadata name and version. Do not include
+them in the push destination. Verify the resulting reference and digest.
+
+Install and upgrade also accept short chart operands. Release names remain
+unchanged; deploying a release is a separate user action from reading or
+publishing a chart. Preserve the intended Kubernetes context and namespace.
+
+Keep full repository URLs in `Chart.yaml`. One invocation authorizes one private
+Ravenstash repository, while public dependencies keep their own URLs and existing
+credentials. Remote caches are not supported for Helm repositories.

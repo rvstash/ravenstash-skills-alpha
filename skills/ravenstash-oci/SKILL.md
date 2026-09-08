@@ -29,7 +29,9 @@ Read [references/container.md](references/container.md) for Docker image work,
 ## Stable reference construction
 
 Docker push/pull/tag can use short image paths with the selected repository on
-CLI versions supporting shorthand. For commands requiring a full reference, use
+CLI versions supporting shorthand. Helm push can omit its destination, and
+chart read/render/release commands accept short paths; see the Helm reference
+for local-path and alias collisions. For commands requiring a full reference, use
 `rvs oci-reference` rather than inventing namespace or repository refs:
 
 ```bash
