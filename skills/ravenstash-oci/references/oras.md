@@ -9,7 +9,7 @@ ORAS supports both Ravenstash OCI kinds, so always provide one:
 rvs oras \
   --rvs-kind container \
   --rvs-target platform/runtime-images \
-  discover oci.rvsta.sh/w_abcdefgh/r_23456789/api:latest
+  discover oci.rvsta.sh/in_abcdefgh/r_23456789/api:latest
 ```
 
 Use `--rvs-kind helm` only for an exact Helm lane. Do not infer kind from the

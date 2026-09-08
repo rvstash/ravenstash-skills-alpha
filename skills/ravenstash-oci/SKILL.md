@@ -28,7 +28,9 @@ Read [references/container.md](references/container.md) for Docker image work,
 
 ## Stable reference construction
 
-Use `rvs oci-reference` rather than inventing namespace or repository refs:
+Docker push/pull/tag can use short image paths with the selected repository on
+CLI versions supporting shorthand. For commands requiring a full reference, use
+`rvs oci-reference` rather than inventing namespace or repository refs:
 
 ```bash
 rvs oci-reference \
@@ -38,8 +40,8 @@ rvs oci-reference \
   --reference latest
 ```
 
-The returned reference contains stable Ravenstash namespace and repository
-identifiers. Never reconstruct those identifiers from display names.
+Use the returned reference unchanged. Never reconstruct stable identifiers from
+display names.
 
 ## Credential boundary
 

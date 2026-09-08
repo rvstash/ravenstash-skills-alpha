@@ -20,7 +20,7 @@ version separate from the Ravenstash repository display name.
 
 ```bash
 rvs helm --rvs-target platform/deployment-charts show chart \
-  oci://oci.rvsta.sh/w_abcdefgh/r_3456789a/charts/api \
+  oci://oci.rvsta.sh/in_abcdefgh/r_3456789a/charts/api \
   --version 1.2.3
 ```
 
