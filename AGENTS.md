@@ -2,6 +2,15 @@
 
 Operational guidance for the Ravenstash Agent Skills repository.
 
+## Agent workflow
+
+- For cross-repository, product-policy, release, or production work, first read
+  `../../AGENTS.md` and the authoritative documents it identifies.
+- Reviews and investigations are read-only. For implementation, complete the
+  authorized local change and run the smallest relevant verification.
+- Do not commit, push, release, or publish unless the user explicitly requests
+  it. Report changed files and verification results.
+
 ## Repository role
 
 - This is the canonical source for portable `SKILL.md` workflows that teach AI
@@ -39,10 +48,10 @@ public hosts, documentation-safe names, and obvious placeholders.
 - Require the exact local profile, acting account, target, registry kind, and
   object identity where ambiguity could affect another resource.
 - Never include token values or instructions to persist credentials.
-- In the supported 0.11.x channel, `rvs art repo` and `rvs artifacts repo`
-  manage artifact repositories; top-level `rvs repo` is absent and `rvs ci`
-  remains a placeholder. Do not invent CI subcommands or a source-repository
-  product.
+- Verify the supported CLI compatibility channel and command surface from the
+  skill metadata, pinned released binary, and its `--help` output. Do not encode a
+  release-specific command inventory in this instruction file or invent commands
+  and products that the supported release does not expose.
 - Do not add skills for roadmap products until a released customer workflow
   gives the skill something concrete to operate or interpret.
 
