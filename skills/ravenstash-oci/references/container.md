@@ -31,7 +31,7 @@ without Docker shorthand:
 
 ```bash
 rvs art reference \
-  --format container \
+  --format oci \
   --target platform/runtime-images \
   team/api:1.2
 ```

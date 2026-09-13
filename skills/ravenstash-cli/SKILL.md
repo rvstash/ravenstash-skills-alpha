@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Ravenstash
   version: "0.4.0"
-  ravenstash-rvs-compatibility: "unreleased-task-084"
+  ravenstash-rvs-compatibility: "unreleased-task-085"
 ---
 
 # Ravenstash CLI

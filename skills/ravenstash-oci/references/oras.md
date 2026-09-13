@@ -3,17 +3,16 @@
 Load when the user explicitly wants ORAS or an OCI-native discover, manifest,
 tag, pull, or push operation.
 
-ORAS supports both Ravenstash OCI kinds, so always provide one:
+ORAS uses the selected repository’s OCI format:
 
 ```bash
 rvs oras \
-  --rvs-format container \
   --rvs-target platform/runtime-images \
   discover oci.rvsta.sh/in_abcdefgh/r_23456789/api:latest
 ```
 
-Use `--rvs-format helm` only for an exact Helm lane. Do not infer kind from the
-shared host alone.
+Do not pass `--rvs-format`. Content type comes from the manifest, not the host
+or a credential permission. Use `rvs art oci` for typed path/tag/digest management.
 
 For a push, inspect the local artifact set and annotations, resolve the stable
 reference with `rvs art reference`, and confirm the exact remote reference

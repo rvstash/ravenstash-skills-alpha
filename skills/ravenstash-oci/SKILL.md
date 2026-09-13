@@ -1,26 +1,26 @@
 ---
 name: ravenstash-oci
-description: Use Ravenstash private Container and Helm OCI repository lanes through rvs, Docker, Helm, and ORAS with exact target and registry-kind selection and ephemeral credentials. Use for OCI references, image push or pull, Helm chart publish or install, and ORAS discovery; do not use for PyPI, npm, Maven, or private-mirror workflows.
+description: Use Ravenstash private OCI repositories for container images and Helm charts through rvs, Docker, Helm, and ORAS with exact target selection and ephemeral credentials. Use for OCI references, image push or pull, Helm chart publish or install, and ORAS discovery; do not use for PyPI, npm, Maven, or private-mirror workflows.
 license: MIT
 metadata:
   author: Ravenstash
   version: "0.4.0"
-  ravenstash-rvs-compatibility: "unreleased-task-084"
+  ravenstash-rvs-compatibility: "unreleased-task-085"
 ---
 
 # Ravenstash OCI
 
-Container and Helm are distinct private repository kinds that share OCI
-Distribution and the `oci.rvsta.sh` host. Never collapse them into one implicit
-lane.
+Container images and Helm charts share the `oci` format and `oci.rvsta.sh` host.
+Content type is determined from the manifest. A path has one primary content
+type; use separate paths such as `images/api` and `charts/api` when needed.
 
 ## Preflight
 
 1. Run `rvs --version` and discover current syntax with `rvs <group> --help`.
 2. Check `rvs auth status` and use `rvs auth whoami` when identity matters.
 3. Resolve the acting account and exact `namespace/repository` target.
-4. Resolve `container` or `helm` for native wrapper operations. The read-only
-   `rvs art native config oras` template may cover both enabled formats.
+4. Confirm that the repository enables `oci`. Use `rvs art oci list` to inspect
+   paths; `--content-type container_image|helm_chart` filters their classification.
 5. Confirm that the requested native tool is installed.
 
 Read [references/container.md](references/container.md) for Docker image work,
@@ -37,7 +37,7 @@ for local-path and alias collisions. For commands requiring a full reference, us
 
 ```bash
 rvs art reference \
-  --format container \
+  --format oci \
   --target platform/runtime-images \
   api:latest
 ```
@@ -48,7 +48,7 @@ display names.
 ## Credential boundary
 
 `rvs art native config docker|helm|oras` prints setup instructions without
-minting, writing, or running tools. Dual-format ORAS instructions use one token
+minting, writing, or running tools. ORAS instructions for both content types use one token
 and one host login. Default native credential stores can be shared, so logout
 may affect another client; the printed recipes use isolated temporary files.
 
