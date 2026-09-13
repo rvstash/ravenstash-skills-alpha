@@ -20,13 +20,12 @@ Publishing requires a private npm repository:
 
 ```bash
 rvs npm --rvs-target platform/releases publish
-rvs art npm publish . --target platform/releases
 ```
 
-The Ravenstash-native publish helper uses native `npm pack`, including the
-package's packlist and lifecycle hooks. Treat those hooks as project code that
-may execute locally; inspect the package and obtain any execution approval
-required by the environment before publishing.
+The wrapper invokes native `npm publish`, including its packlist and lifecycle
+hooks. Treat those hooks as project code that may execute locally; inspect the
+package and obtain any execution approval required by the environment before
+publishing.
 
 ## Configuration
 

@@ -4,14 +4,14 @@ description: Use Ravenstash private PyPI, npm, and Maven repositories and read-o
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.4.0"
+  version: "0.4.1"
   ravenstash-rvs-compatibility: "unreleased-task-084"
 ---
 
 # Ravenstash Packages
 
 Use the package-release lanes of Ravenstash Artifacts without collapsing private repositories, private
-mirrors, acting accounts, or registry kinds into one implicit destination.
+mirrors, acting accounts, or formats into one implicit destination.
 
 ## Preflight
 
@@ -26,7 +26,7 @@ those lanes use the separate OCI workflow.
 4. Resolve the target with `rvs art current`, a one-shot `--target`, or wrapper
    `--rvs-target`. Prefer the one-shot form when the user did not request a
    saved selection change.
-5. Resolve the registry kind. Never publish to a mirror or use a package-release
+5. Resolve the format. Never publish to a mirror or use a package-release
    workflow against a Container or Helm lane.
 
 ## Route the workflow
@@ -67,7 +67,7 @@ The wrappers must not cause a skill or agent to copy tokens into `.npmrc`,
   selecting saved context, configuring persistent native clients, publishing,
   yanking, and deleting mutate local or remote state.
 - Before a mutation, report the exact acting account, namespace/repository or mirror,
-  registry kind, package/version when applicable, and intended change.
+  format, package/version when applicable, and intended change.
 - Do not pass `--yes` to deletion commands merely to suppress the CLI's
   confirmation. Use it only when the user explicitly authorized that exact
   deletion and the target has been independently resolved.

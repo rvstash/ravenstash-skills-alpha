@@ -13,14 +13,14 @@ rvs art repo list --format pypi
 rvs art repo show platform/packages
 ```
 
-Creation requires an explicit name and one or more registry kinds:
+Creation requires an explicit name and one or more formats:
 
 ```bash
 rvs art repo create packages --format pypi,npm
 rvs art repo create packages --format pypi --format npm
 ```
 
-A logical repository can contain several lanes. Confirm all intended kinds
+A logical repository can contain several formats. Confirm all intended formats
 rather than creating another same-named repository to compensate for a missing
 lane.
 
@@ -52,8 +52,8 @@ rvs art mirror select --custom company-python
 Use a mirror once without changing the saved target:
 
 ```bash
-rvs art install requests --target mirror:pypiorg
-rvs art install internal-sdk --target custom-mirror:company-python
+rvs pip --rvs-target mirror:pypiorg install requests
+rvs pip --rvs-target custom-mirror:company-python install internal-sdk
 ```
 
 Create custom mirrors in the webapp. The CLI can select, read, manage, and attach
@@ -62,9 +62,10 @@ existing custom mirrors. It cannot create them.
 ## Attach a backing remote cache to a repository
 
 ```bash
-rvs art mirror show CACHE_ID
+rvs art mirror show rc_...
 rvs art repo upstream add platform/packages pypi \
-  --remote-cache CACHE_ID \
+  --remote-cache rc_... \
+  --position 1 \
   --min-age-hours 24
 ```
 
@@ -74,7 +75,7 @@ automatically changing existing attachments.
 
 ## Package lifecycle
 
-Resolve repository and kind before acting:
+Resolve repository and format before acting:
 
 ```bash
 rvs art package list --target platform/packages --format pypi
@@ -82,5 +83,5 @@ rvs art package show requests --target platform/packages --format pypi
 ```
 
 Delete and yank operations affect remote package state. Confirm exact package,
-version, repository, registry kind, and account before invoking them. Do not add
+version, repository, format, and account before invoking them. Do not add
 `--yes` unless the exact deletion is already authorized.
