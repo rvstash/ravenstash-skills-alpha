@@ -20,7 +20,7 @@ Publishing requires a private npm repository:
 
 ```bash
 rvs npm --rvs-target platform/releases publish
-rvs art npm publish . --repo platform/releases
+rvs art npm publish . --target platform/releases
 ```
 
 The Ravenstash-native publish helper uses native `npm pack`, including the
@@ -30,6 +30,7 @@ required by the environment before publishing.
 
 ## Configuration
 
-`rvs art npm registry-url` and `npmrc` can render non-secret routing material.
+`rvs art endpoint --format npm` prints routing; `rvs art native config npm`
+prints setup instructions without minting credentials or writing files.
 Persistent configuration changes require explicit intent. Do not place an
 access token in a tracked `.npmrc`, command argument, or output.

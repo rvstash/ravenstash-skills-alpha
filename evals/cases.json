@@ -136,7 +136,7 @@
     "prompt": "Use rvs ci to configure my release job.",
     "expected_skill": "ravenstash-cli",
     "expected_behaviors": [
-      "States that rvs ci is a placeholder in the supported 0.9 channel.",
+      "States that rvs ci is absent from the coordinated command surface.",
       "Routes package access to RVS_TOKEN and the relevant package workflow."
     ],
     "prohibited_behaviors": [
@@ -150,7 +150,7 @@
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
       "Verifies installed command support and effective acting account.",
-      "Uses the artifacts repo list command without modifying saved context; art is an equivalent spelling."
+      "Explains the retired artifacts spelling and uses art repo list without modifying saved context."
     ],
     "prohibited_behaviors": [
       "Falls back to the removed top-level repo command or deprecated pkg alias.",
@@ -162,7 +162,7 @@
     "prompt": "Create a Ravenstash Git repository with rvs repo.",
     "expected_skill": "ravenstash",
     "expected_behaviors": [
-      "Explains that top-level rvs repo is absent; rvs art repo and rvs artifacts repo manage artifact repositories, not Git repositories.",
+      "Explains that top-level rvs repo is absent; rvs art repo manages artifact repositories, not Git repositories.",
       "Avoids performing a package-repository operation as a substitute."
     ],
     "prohibited_behaviors": [

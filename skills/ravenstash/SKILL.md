@@ -58,8 +58,8 @@ availability.
   any operation that could affect remote state. Never substitute a same-named
   object from another account or namespace.
 - Do not imply that a roadmap product or placeholder CLI group is usable. The
-  supported 0.11.x surface uses `rvs art repo` or `rvs artifacts repo`;
-  top-level `rvs repo` is absent and `rvs ci` remains a placeholder.
+  coordinated command surface uses `rvs art repo`; top-level `rvs repo`,
+  `rvs artifacts`, and `rvs ci` are absent.
 - Do not invent billing, quota, retention, anonymous access, or package-security
   behavior. Refer volatile policy questions to current public documentation.
 

@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Ravenstash
   version: "0.4.0"
-  ravenstash-rvs-compatibility: "0.11.x"
+  ravenstash-rvs-compatibility: "unreleased-task-084"
 ---
 
 # Ravenstash OCI
@@ -19,7 +19,8 @@ lane.
 1. Run `rvs --version` and discover current syntax with `rvs <group> --help`.
 2. Check `rvs auth status` and use `rvs auth whoami` when identity matters.
 3. Resolve the acting account and exact `namespace/repository` target.
-4. Resolve `container` or `helm`. ORAS always needs an explicit kind.
+4. Resolve `container` or `helm` for native wrapper operations. The read-only
+   `rvs art native config oras` template may cover both enabled formats.
 5. Confirm that the requested native tool is installed.
 
 Read [references/container.md](references/container.md) for Docker image work,
@@ -32,20 +33,24 @@ Docker push/pull/tag can use short image paths with the selected repository on
 CLI versions supporting shorthand. Helm push can omit its destination, and
 chart read/render/release commands accept short paths; see the Helm reference
 for local-path and alias collisions. For commands requiring a full reference, use
-`rvs oci-reference` rather than inventing namespace or repository refs:
+`rvs art reference` rather than inventing namespace or repository refs:
 
 ```bash
-rvs oci-reference \
-  --kind container \
+rvs art reference \
+  --format container \
   --target platform/runtime-images \
-  --oci-path api \
-  --reference latest
+  api:latest
 ```
 
 Use the returned reference unchanged. Never reconstruct stable identifiers from
 display names.
 
 ## Credential boundary
+
+`rvs art native config docker|helm|oras` prints setup instructions without
+minting, writing, or running tools. Dual-format ORAS instructions use one token
+and one host login. Default native credential stores can be shared, so logout
+may affect another client; the printed recipes use isolated temporary files.
 
 - Use the `rvs docker`, `rvs helm`, or `rvs oras` wrapper for temporary scoped
   authentication.

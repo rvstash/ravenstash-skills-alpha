@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Ravenstash
   version: "0.4.0"
-  ravenstash-rvs-compatibility: "0.11.x"
+  ravenstash-rvs-compatibility: "unreleased-task-084"
 ---
 
 # Ravenstash Packages
@@ -15,8 +15,7 @@ mirrors, acting accounts, or registry kinds into one implicit destination.
 
 ## Preflight
 
-Repository management lives under `rvs art repo` and its identical full-name
-alias `rvs artifacts repo`. The product also supports Container and Helm, but
+Repository management lives under `rvs art repo`. The product also supports Container and Helm, but
 those lanes use the separate OCI workflow.
 
 1. Run `rvs --version` and use `rvs <group> --help` for exact syntax.

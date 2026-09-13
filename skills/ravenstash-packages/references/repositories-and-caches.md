@@ -9,14 +9,15 @@ Inspect before changing:
 
 ```bash
 rvs art repo list
-rvs art repo list --registry-kind pypi
+rvs art repo list --format pypi
 rvs art repo show platform/packages
 ```
 
 Creation requires an explicit name and one or more registry kinds:
 
 ```bash
-rvs art repo create packages --registry-kind pypi
+rvs art repo create packages --format pypi,npm
+rvs art repo create packages --format pypi --format npm
 ```
 
 A logical repository can contain several lanes. Confirm all intended kinds
@@ -43,7 +44,7 @@ distinct:
 
 ```bash
 rvs art mirror list
-rvs art mirror add pypiorg --select
+rvs art mirror create pypiorg --select
 rvs art mirror select pypiorg
 rvs art mirror select --custom company-python
 ```
@@ -51,26 +52,12 @@ rvs art mirror select --custom company-python
 Use a mirror once without changing the saved target:
 
 ```bash
-rvs art --target mirror:pypiorg install requests
-rvs art --target custom-mirror:company-python install internal-sdk
+rvs art install requests --target mirror:pypiorg
+rvs art install internal-sdk --target custom-mirror:company-python
 ```
 
-When creating a protected custom mirror, pass the secret by
-environment-variable name, never by value on the command line:
-
-```bash
-export UPSTREAM_TOKEN="${TOKEN_FROM_SECRET_STORE}"
-rvs art mirror create-custom company-python \
-  --kind pypi \
-  --api-url https://packages.example.com/simple/ \
-  --publication-control user-controlled \
-  --auth-scheme bearer \
-  --secret-env UPSTREAM_TOKEN \
-  --allowed-host packages.example.com
-```
-
-Do not disclose or persist the environment value. Check current documentation
-for plan or role eligibility rather than encoding it in the skill.
+Create custom mirrors in the webapp. The CLI can select, read, manage, and attach
+existing custom mirrors. It cannot create them.
 
 ## Attach a backing remote cache to a repository
 
@@ -90,8 +77,8 @@ automatically changing existing attachments.
 Resolve repository and kind before acting:
 
 ```bash
-rvs art package list --repo platform/packages --registry-kind pypi
-rvs art package show requests --repo platform/packages --registry-kind pypi
+rvs art package list --target platform/packages --format pypi
+rvs art package show requests --target platform/packages --format pypi
 ```
 
 Delete and yank operations affect remote package state. Confirm exact package,

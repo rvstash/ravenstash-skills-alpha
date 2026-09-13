@@ -30,11 +30,10 @@ Resolve a reference for Dockerfiles, Buildx output tags, ORAS, or a CLI version
 without Docker shorthand:
 
 ```bash
-rvs oci-reference \
-  --kind container \
+rvs art reference \
+  --format container \
   --target platform/runtime-images \
-  --oci-path team/api \
-  --reference 1.2
+  team/api:1.2
 ```
 
 Use the returned reference; do not invent stable identifiers or registry hosts.

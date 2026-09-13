@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Ravenstash
   version: "0.4.0"
-  ravenstash-rvs-compatibility: "0.11.x"
+  ravenstash-rvs-compatibility: "unreleased-task-084"
 ---
 
 # Ravenstash CLI
@@ -17,8 +17,8 @@ lock files, builds, and dependency resolution.
 ## Preflight
 
 1. Check for the CLI with `command -v rvs`.
-2. If present, run `rvs --version`. This skill targets the 0.11 compatibility
-   channel; if the installed command differs, use its help and current release
+2. If present, run `rvs --version`. This source targets the unreleased Task 084
+   surface; if the installed command differs, use its help and current release
    notes rather than forcing these examples.
 3. Discover exact syntax with `rvs --help` and `rvs <group> --help`. Never guess
    a subcommand or option.
@@ -42,7 +42,7 @@ rvs --json account current
 rvs --json art repo list
 ```
 
-Ravenstash-owned output is newline-delimited JSON. Output from native
+Endpoint, reference, token, and template commands emit one JSON document. Output from native
 passthrough tools retains the native tool's format. Do not move `--json` after
 the command or assume native output becomes JSON.
 
@@ -72,11 +72,9 @@ the command or assume native output becomes JSON.
 
 ## Unsupported groups
 
-`rvs art` and `rvs artifacts` invoke the same product group, including its `repo`
-subgroup. Top-level `rvs repo` is absent. Do not teach the temporary hidden
-`rvs pkg` spelling; older installations need a supported update, not a fallback.
-`rvs ci` remains a registered placeholder. Do not invent CI subcommands. CI package access uses
-an automation token and the documented package-manager or `rvs` workflow.
+Use `rvs art`, including its `repo` subgroup. The duplicate `artifacts` spelling,
+top-level `repo`, and `ci` group are absent. CI package access uses an automation
+token and the documented package-manager or `rvs` workflow.
 
 ## Completion
 

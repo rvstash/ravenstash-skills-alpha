@@ -44,8 +44,7 @@ target remains scoped to its local profile and immutable acting-account identity
 
 ## Availability floor for these skills
 
-These skills cover Ravenstash Artifacts with `rvs` 0.11.x.
-`rvs art repo` and `rvs artifacts repo` manage repositories for packages, container
-images, and Helm charts. Top-level `rvs repo` is absent; `rvs ci` remains a placeholder and does
-not make a future CI product available. Check current public documentation before
+These sources prepare the unreleased Task 084 command surface.
+`rvs art repo` manages repositories for packages, container images, and Helm charts.
+Top-level `rvs repo`, `rvs artifacts`, and `rvs ci` are absent. Check current public documentation before
 making broader product-availability claims.

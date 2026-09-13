@@ -31,7 +31,7 @@ Publishing requires a private PyPI repository, never a mirror:
 
 ```bash
 rvs twine --rvs-target platform/releases upload dist/*
-rvs art pypi publish dist/ --repo platform/releases
+rvs art pypi publish dist/ --target platform/releases
 ```
 
 Inspect the distribution files and exact repository before publishing. A
@@ -40,6 +40,8 @@ invented to satisfy another request.
 
 ## Persistent configuration
 
-`rvs art pypi index-url` and `upload-url` are read operations. A configure
-command or editing pip/Twine configuration changes persistent local state and
-requires explicit intent. Never write a Ravenstash token into that state.
+`rvs art endpoint --format pypi --access read|publish` prints an address.
+`rvs art native config pip` and `rvs art native config twine` print instructions
+without minting credentials or changing files. Pip has fixed read intent and
+Twine fixed publish intent; neither accepts `--access`. Executing the printed
+setup or editing native configuration requires the user's corresponding intent.

@@ -1,7 +1,7 @@
 # Helm OCI workflows
 
 Use the selected repository for Helm chart work when the installed CLI supports
-shorthand. For an older CLI, use full `oci://` references from `rvs oci-reference`.
+shorthand. For an older CLI, use full `oci://` references from `rvs art reference`.
 Helm requires the Helm kind even when a repository also supports Container.
 
 ## Read and render

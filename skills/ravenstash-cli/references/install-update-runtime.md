@@ -31,8 +31,12 @@ Before 1.0, each minor line is a compatibility boundary. Crossing it is
 explicit and should follow release-note review:
 
 ```bash
-rvs upgrade --to 0.4
+rvs update --to SERIES
+rvs update --to SERIES --apply
 ```
+
+`SERIES` is the requested newer release series. The first command only previews;
+only `--apply` installs. `--yes` requires `--apply`.
 
 Do not replace the binary manually or bypass the signed APT path.
 
