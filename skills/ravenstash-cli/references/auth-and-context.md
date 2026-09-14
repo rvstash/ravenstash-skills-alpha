@@ -56,15 +56,16 @@ repository, command transcript, shell profile, or `~/.rvs/config.toml`.
 ```bash
 rvs account list
 rvs account current
-rvs account use personal
-rvs account use org:acme
+rvs account use Avery
+rvs account use AcmeHQ
 rvs context current
 ```
 
-Account selection is persisted in the selected local profile. For one operation, use the command's
-`--account` option or a wrapper's `--rvs-account` option. `rvs context current`
-verifies the user and shows the effective profile, account, target, and selection
-provenance.
+Use the Ravenstash username for a personal account or the public handle for an
+organization. Account selection is persisted in the selected local profile. For
+one operation, use the command's `--account` option or a wrapper's
+`--rvs-account` option. `rvs context current` verifies the user and shows the
+effective profile, account, target, and selection provenance.
 
 ## Artifact target
 
@@ -82,7 +83,7 @@ Resolution precedence is:
 
 1. Explicit one-shot target.
 2. Selected target for the effective local profile and acting account.
-3. Legacy per-kind private-repository default.
+3. Legacy per-format private-repository default.
 4. For supported reads, the account's enabled official cache.
 
 An explicit account is resolved before the target. A failed authorization or

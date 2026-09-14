@@ -4,8 +4,8 @@ description: Use Ravenstash private OCI repositories for container images and He
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.4.0"
-  ravenstash-rvs-compatibility: "unreleased-task-085"
+  version: "0.5.0"
+  ravenstash-rvs-compatibility: "0.13.x"
 ---
 
 # Ravenstash OCI
@@ -29,11 +29,11 @@ Read [references/container.md](references/container.md) for Docker image work,
 
 ## Stable reference construction
 
-Docker push/pull/tag can use short image paths with the selected repository on
-CLI versions supporting shorthand. Helm push can omit its destination, and
-chart read/render/release commands accept short paths; see the Helm reference
-for local-path and alias collisions. For commands requiring a full reference, use
-`rvs art reference` rather than inventing namespace or repository refs:
+Docker push/pull/tag can use short image paths with the selected repository.
+Helm push can omit its destination, and chart read/render/release commands accept
+short paths; see the Helm reference for local-path and alias collisions. For
+commands requiring a full reference, use `rvs art reference` rather than
+inventing namespace or repository refs:
 
 ```bash
 rvs art reference \
@@ -73,6 +73,6 @@ may affect another client; the printed recipes use isolated temporary files.
 
 ## Completion
 
-Report registry kind, target, stable OCI reference, native tool, and observable
-result. For a push or publish, include the resulting tag or digest when the
-native tool reports it, without exposing credentials.
+Report OCI content type, target, stable OCI reference, native tool, and
+observable result. For a push or publish, include the resulting tag or digest
+when the native tool reports it, without exposing credentials.

@@ -1,8 +1,8 @@
 # Helm OCI workflows
 
-Use the selected repository for Helm chart work when the installed CLI supports
-shorthand. For an older CLI, use full `oci://` references from `rvs art reference`.
-Helm requires the Helm kind even when a repository also supports Container.
+Use the selected repository for Helm chart work with short chart paths. The
+repository must enable OCI; the manifest determines whether a path contains a
+Helm chart or container image.
 
 ## Read and render
 
@@ -39,4 +39,4 @@ publishing a chart. Preserve the intended Kubernetes context and namespace.
 
 Keep full repository URLs in `Chart.yaml`. One invocation authorizes one private
 Ravenstash repository, while public dependencies keep their own URLs and existing
-credentials. Remote caches are not supported for Helm repositories.
+credentials. Remote caches are not supported for OCI repositories.

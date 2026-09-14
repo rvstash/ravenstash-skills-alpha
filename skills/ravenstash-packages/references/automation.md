@@ -21,7 +21,7 @@ runners:
 
 ```bash
 rvs npm \
-  --rvs-account org:acme \
+  --rvs-account AcmeHQ \
   --rvs-target platform/packages \
   ci
 ```

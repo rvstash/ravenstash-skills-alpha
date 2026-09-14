@@ -45,8 +45,9 @@ public hosts, documentation-safe names, and obvious placeholders.
   manual.
 - Preserve user scope. A skill never turns a read request into a create,
   publish, switch, configure, yank, or delete operation.
-- Require the exact local profile, acting account, target, registry kind, and
-  object identity where ambiguity could affect another resource.
+- Require the exact local profile, acting account, target, repository format or
+  OCI content type, and object identity where ambiguity could affect another
+  resource.
 - Never include token values or instructions to persist credentials.
 - Verify the supported CLI compatibility channel and command surface from the
   skill metadata, pinned released binary, and its `--help` output. Do not encode a

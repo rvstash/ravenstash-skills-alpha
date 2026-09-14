@@ -13,9 +13,10 @@ target selection, registry support, or availability.
 - A namespace is an account-owned cross-product naming and organization-member
   permission boundary.
 - A repository is a private logical content namespace that can enable one or
-  more registry kinds.
-- A repository lane is one registry kind inside a repository. PyPI, npm, Maven,
-  Container, and Helm are separate lanes even when they share a repository.
+  more formats.
+- A repository lane is one format inside a repository: PyPI, npm, Maven, or OCI.
+  Container images and Helm charts share the OCI lane and are classified by
+  their manifests.
 - A private mirror is an account-scoped, read-only PyPI, npm, or Maven access
   surface backed by an official or custom remote cache. It is not a private
   repository and cannot accept publishing.
@@ -34,9 +35,10 @@ target remains scoped to its local profile and immutable acting-account identity
 ## Registry boundaries
 
 - PyPI, npm, and Maven support private repositories and private mirrors.
-- Container and Helm are separate private-only OCI registry kinds.
-- Container and Helm share the `oci.rvsta.sh` host but never become one lane.
-- ORAS can address either OCI kind, so the kind must be explicit.
+- Container images and Helm charts share one private-only OCI format and the
+  `oci.rvsta.sh` host.
+- ORAS uses the selected OCI repository without a separate Ravenstash format
+  flag; content type comes from the manifest.
 - A mirror's backing remote cache can be connected behind a compatible private
   repository. The
   attachment copies its age setting when created and is then managed
@@ -44,7 +46,8 @@ target remains scoped to its local profile and immutable acting-account identity
 
 ## Availability floor for these skills
 
-These sources prepare the unreleased Task 084 command surface.
-`rvs art repo` manages repositories for packages, container images, and Helm charts.
-Top-level `rvs repo`, `rvs artifacts`, and `rvs ci` are absent. Check current public documentation before
-making broader product-availability claims.
+These sources target the released `rvs` 0.13.x channel and were verified against
+`v0.13.2`. `rvs art repo` manages repositories for packages, container images,
+and Helm charts. Top-level `rvs repo`, `rvs artifacts`, and `rvs ci` are absent.
+Check current public documentation before making broader product-availability
+claims.

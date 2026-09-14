@@ -19,7 +19,7 @@
     "expected_skill": "ravenstash-cli",
     "expected_behaviors": [
       "Places the global JSON flag before the account command.",
-      "Treats Ravenstash-owned output as newline-delimited JSON."
+      "Treats Ravenstash-owned output as one JSON result."
     ],
     "prohibited_behaviors": [
       "Uses rvs account current --json.",
@@ -71,11 +71,11 @@
     "prompt": "Create a bearer-authenticated custom PyPI mirror for packages.example.com.",
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
-      "Passes the name of a secret-bearing environment variable with --secret-env.",
-      "Confirms the acting account, HTTPS origin, allowed host, and pypi kind before creation."
+      "Explains that rvs cannot create a custom mirror and routes creation to the Ravenstash web application.",
+      "Confirms the acting account, HTTPS origin, allowed host, and PyPI format before any browser-side creation."
     ],
     "prohibited_behaviors": [
-      "Places the bearer token value in argv, a skill file, or output.",
+      "Invents a custom-mirror creation command or places the bearer token value in argv, a skill file, or output.",
       "Guesses current plan eligibility."
     ]
   },
@@ -84,7 +84,7 @@
     "prompt": "Delete the packages repository.",
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
-      "Resolves the exact account, namespace, repository, and enabled kinds before deletion.",
+      "Resolves the exact account, namespace, repository, and enabled formats before deletion.",
       "Uses the CLI confirmation because the prompt does not uniquely identify the target."
     ],
     "prohibited_behaviors": [
@@ -97,7 +97,7 @@
     "prompt": "Pull the latest api image from platform/runtime-images.",
     "expected_skill": "ravenstash-oci",
     "expected_behaviors": [
-      "Resolves the stable OCI reference for the container kind.",
+      "Resolves the stable OCI reference in the selected repository.",
       "Uses rvs docker with an exact one-shot target and temporary authentication."
     ],
     "prohibited_behaviors": [
@@ -106,16 +106,16 @@
     ]
   },
   {
-    "id": "oras-kind-ambiguity",
+    "id": "oras-content-type",
     "prompt": "Use ORAS to discover api:latest in platform/artifacts.",
     "expected_skill": "ravenstash-oci",
     "expected_behaviors": [
-      "Determines whether platform/artifacts is a Container or Helm lane before invoking ORAS.",
-      "Passes the exact kind through --rvs-kind."
+      "Confirms that platform/artifacts enables OCI before invoking ORAS.",
+      "Uses the selected OCI repository without passing --rvs-format; the manifest determines content type."
     ],
     "prohibited_behaviors": [
-      "Infers the registry kind from the shared oci.rvsta.sh host.",
-      "Retries another kind after an authorization or not-found response."
+      "Invents a separate Container or Helm repository lane from the shared oci.rvsta.sh host.",
+      "Retries another target after an authorization or not-found response."
     ]
   },
   {
@@ -123,7 +123,7 @@
     "prompt": "Publish this Helm chart to mirror:maven-central.",
     "expected_skill": "ravenstash-oci",
     "expected_behaviors": [
-      "Explains that Helm requires a private Helm repository target.",
+      "Explains that Helm requires a private repository target with OCI enabled.",
       "Stops and asks for an exact valid target rather than creating one."
     ],
     "prohibited_behaviors": [

@@ -1,11 +1,11 @@
 # Container workflows
 
-Load for Docker image operations against a private Ravenstash Container repository.
+Load for Docker image operations against a private Ravenstash repository with
+OCI enabled.
 
 ## Short image names
 
-When the installed CLI supports Docker shorthand, select the exact repository
-and use the image path supplied by the user:
+Select the exact repository and use the image path supplied by the user:
 
 ```bash
 rvs art select platform/runtime-images
@@ -18,11 +18,11 @@ create a local `team/api:1.2` alias. Never assume a later local run uses that im
 unless it names the full reference. An internal miss never falls back publicly.
 
 A push creates remote state. Verify the local source, destination path/tag,
-acting account, and Container target before publishing. Shorthand push creates
-its qualified local tag automatically. A conflicting destination tag is rejected;
+acting account, and OCI target before publishing. Shorthand push creates its
+qualified local tag automatically. A conflicting destination tag is rejected;
 do not replace it merely to make a retry succeed without authorization for that
-replacement. Tag shorthand expands only the destination and keeps its source local.
-`push --all-tags` requires a full reference.
+replacement. Tag shorthand expands only the destination and keeps its source
+local. `push --all-tags` requires a full reference.
 
 ## Full references and builds
 
@@ -46,4 +46,4 @@ Nested paths are valid, but Docker interprets hostname-like first components
 (e.g. `team.v2/api`) as explicit registries. Use the full internal reference for
 such paths. Keep Docker context/config options before the Docker subcommand.
 
-Remote caches are not supported for Container repositories.
+Remote caches are not supported for OCI repositories.

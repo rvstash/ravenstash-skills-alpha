@@ -12,11 +12,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 
 
 def scalar(frontmatter: str, key: str) -> str | None:
-    match = re.search(rf"(?m)^{re.escape(key)}:\s*(.+?)\s*$", frontmatter)
+    match = re.search(rf"(?m)^\s*{re.escape(key)}:\s*(.+?)\s*$", frontmatter)
     if not match:
         return None
     value = match.group(1).strip()
@@ -62,6 +63,8 @@ def validate_openai_yaml(skill_dir: Path, name: str, errors: list[str]) -> None:
 
 def validate_skills(errors: list[str]) -> set[str]:
     names: set[str] = set()
+    versions: dict[str, str] = {}
+    compatibilities: dict[str, str] = {}
     for skill_dir in sorted(path for path in SKILLS.iterdir() if path.is_dir()):
         path = skill_dir / "SKILL.md"
         if not path.is_file():
@@ -78,6 +81,8 @@ def validate_skills(errors: list[str]) -> set[str]:
         name = scalar(metadata, "name")
         description = scalar(metadata, "description")
         license_name = scalar(metadata, "license")
+        version = scalar(metadata, "version")
+        compatibility = scalar(metadata, "ravenstash-rvs-compatibility")
         if not name or not NAME_RE.fullmatch(name) or not 1 <= len(name) <= 64:
             errors.append(f"{path.relative_to(ROOT)}: invalid name")
             continue
@@ -90,10 +95,27 @@ def validate_skills(errors: list[str]) -> set[str]:
             errors.append(f"{path.relative_to(ROOT)}: invalid description length")
         if license_name != "MIT":
             errors.append(f"{path.relative_to(ROOT)}: license must be MIT")
+        if not version or not SEMVER_RE.fullmatch(version):
+            errors.append(f"{path.relative_to(ROOT)}: metadata.version must be semantic")
+        else:
+            versions[name] = version
+        if not compatibility:
+            errors.append(
+                f"{path.relative_to(ROOT)}: missing ravenstash-rvs-compatibility"
+            )
+        else:
+            compatibilities[name] = compatibility
         validate_links(path, errors)
         validate_openai_yaml(skill_dir, name, errors)
         for reference in sorted((skill_dir / "references").glob("*.md")):
             validate_links(reference, errors)
+    if len(set(versions.values())) > 1:
+        errors.append(f"skills: inconsistent metadata.version values: {versions}")
+    if len(set(compatibilities.values())) > 1:
+        errors.append(
+            "skills: inconsistent ravenstash-rvs-compatibility values: "
+            f"{compatibilities}"
+        )
     return names
 
 

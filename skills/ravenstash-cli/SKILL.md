@@ -4,8 +4,8 @@ description: Install, update, authenticate, inspect, and troubleshoot the Ravens
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.4.0"
-  ravenstash-rvs-compatibility: "unreleased-task-085"
+  version: "0.5.0"
+  ravenstash-rvs-compatibility: "0.13.x"
 ---
 
 # Ravenstash CLI
@@ -17,9 +17,9 @@ lock files, builds, and dependency resolution.
 ## Preflight
 
 1. Check for the CLI with `command -v rvs`.
-2. If present, run `rvs --version`. This source targets the unreleased Task 084
-   surface; if the installed command differs, use its help and current release
-   notes rather than forcing these examples.
+2. If present, run `rvs --version`. This source targets the `0.13.x` channel and
+   was verified against `v0.13.2`; if the installed command differs, use its help
+   and current release notes rather than forcing these examples.
 3. Discover exact syntax with `rvs --help` and `rvs <group> --help`. Never guess
    a subcommand or option.
 4. Before authenticated work, inspect `rvs auth status`, `rvs auth whoami`,
@@ -42,9 +42,9 @@ rvs --json account current
 rvs --json art repo list
 ```
 
-Endpoint, reference, token, and template commands emit one JSON document. Output from native
-passthrough tools retains the native tool's format. Do not move `--json` after
-the command or assume native output becomes JSON.
+Ravenstash commands emit one JSON result. Output from native passthrough tools
+retains the native tool's format. Do not move `--json` after the command or
+assume native output becomes JSON.
 
 ## Authentication boundary
 
@@ -52,16 +52,17 @@ the command or assume native output becomes JSON.
   authorization. Do not request a Ravenstash password.
 - Verify server identity with `rvs auth whoami`; do not infer it only from local
   metadata.
-- Credentials belong in the operating-system keyring. Do not inspect or copy
-  them from storage.
+- Credentials belong in the configured secure keyring, pass store, or encrypted
+  vault. Plaintext storage requires explicit acknowledgement. Do not inspect or
+  copy credentials from storage.
 - Unattended jobs use `RVS_TOKEN` supplied by a secret manager. Do not run
   device login in CI, write the token to project files, or print it.
 - `RVS_TOKEN` takes precedence over profile credentials and is not refreshed.
 
 ## Context safety
 
-- Keep authenticated user, local profile, acting account, target, and registry
-  kind separate.
+- Keep authenticated user, local profile, acting account, target, repository
+  format, and OCI content type separate.
 - Prefer one-shot `--profile`, `--account`, and `--target` options when the user
   asks for one operation in a different context. Do not persist a switch unless
   requested.
@@ -79,6 +80,6 @@ token and the documented package-manager or `rvs` workflow.
 ## Completion
 
 Report the installed version and effective local profile, acting account, and
-target when relevant, the
-verification command used, and any local files or shell configuration changed.
+target when relevant, the verification command used, and any local files or
+shell configuration changed.
 Never include credential material.

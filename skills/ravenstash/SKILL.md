@@ -4,7 +4,8 @@ description: Route Ravenstash product requests to the correct supported surface 
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.4.0"
+  version: "0.5.0"
+  ravenstash-rvs-compatibility: "0.13.x"
 ---
 
 # Ravenstash
@@ -21,14 +22,14 @@ documentation or installed CLI help.
 - Use `ravenstash-packages` for private PyPI, npm, or Maven repositories,
   private mirrors, package publishing, installs, package lifecycle operations,
   and package automation.
-- Use `ravenstash-oci` for Container or Helm repositories and Docker, Helm, or
-  ORAS workflows.
+- Use `ravenstash-oci` for container images or Helm charts in OCI-enabled
+  repositories and for Docker, Helm, or ORAS workflows.
 - Use the Ravenstash web application for account security settings,
   organization membership, passkeys, automation-token creation, and workflows
   not exposed by `rvs`.
 
 Read [references/product-model.md](references/product-model.md) when the request
-depends on repository kinds, target types, terminology, or current product
+depends on repository formats, target types, terminology, or current product
 availability.
 
 ## Source priority
@@ -54,9 +55,9 @@ availability.
 - Never request, print, copy, or persist a Ravenstash access token. Interactive
   login uses the browser-backed device flow; automation receives `RVS_TOKEN`
   from the user's secret store.
-- Resolve the local profile, acting account, target, and registry kind before
-  any operation that could affect remote state. Never substitute a same-named
-  object from another account or namespace.
+- Resolve the local profile, acting account, target, repository format, and OCI
+  content type when relevant before any operation that could affect remote
+  state. Never substitute a same-named object from another account or namespace.
 - Do not imply that a roadmap product or placeholder CLI group is usable. The
   coordinated command surface uses `rvs art repo`; top-level `rvs repo`,
   `rvs artifacts`, and `rvs ci` are absent.

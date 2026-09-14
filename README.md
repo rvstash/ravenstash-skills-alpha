@@ -1,12 +1,12 @@
 # Ravenstash Agent Skills
 
 Official Agent Skills for Ravenstash products and the `rvs` developer CLI.
-This repository is a private preview while the initial workflows and evals are
-stabilized.
+This public alpha repository contains the current portable workflows and
+behavioral evals.
 
-This source prepares the unreleased Task 084 command surface. No released CLI
-channel is claimed compatible yet. Validate the bundle against the coordinated
-CLI build before publishing; installed CLI help remains the execution authority.
+The 0.5 skill source targets the released `rvs` 0.13.x compatibility channel and
+is verified against the latest tag, `v0.13.2`. Installed CLI help remains the
+execution authority.
 
 The skills follow the [Agent Skills specification](https://agentskills.io/) and
 are designed for Codex, GitHub Copilot, Claude Code, Cursor, and other compatible
@@ -21,36 +21,34 @@ facts and complete command references remain in the
 | `ravenstash` | Product vocabulary, availability boundaries, source priority, and workflow routing |
 | `ravenstash-cli` | Installation, updates, local profiles, acting accounts, targets, structured output, runtimes, and troubleshooting |
 | `ravenstash-packages` | PyPI, npm, and Maven repositories, private mirrors, lifecycle operations, publishing, installs, and automation |
-| `ravenstash-oci` | Container and Helm OCI lanes through Docker, Helm, ORAS, and `rvs` wrappers |
+| `ravenstash-oci` | Container images and Helm charts in one OCI repository format through Docker, Helm, ORAS, and `rvs` wrappers |
 
 Install all four. Each workflow skill is self-contained, while `ravenstash`
 provides the common router for broad requests.
 
 ## Install
 
-Private-preview installation requires GitHub access to this repository.
-
 Using the cross-agent skills installer:
 
 ```bash
-npx skills add rvstash/ravenstash-skills --all
+npx skills add rvstash/ravenstash-skills-alpha --all
 ```
 
 If the installed GitHub CLI release includes `gh skill`, install each skill for
 the intended agent and scope:
 
 ```bash
-gh skill install rvstash/ravenstash-skills ravenstash --agent codex --scope user
-gh skill install rvstash/ravenstash-skills ravenstash-cli --agent codex --scope user
-gh skill install rvstash/ravenstash-skills ravenstash-packages --agent codex --scope user
-gh skill install rvstash/ravenstash-skills ravenstash-oci --agent codex --scope user
+gh skill install rvstash/ravenstash-skills-alpha ravenstash --agent codex --scope user
+gh skill install rvstash/ravenstash-skills-alpha ravenstash-cli --agent codex --scope user
+gh skill install rvstash/ravenstash-skills-alpha ravenstash-packages --agent codex --scope user
+gh skill install rvstash/ravenstash-skills-alpha ravenstash-oci --agent codex --scope user
 ```
 
 Change `--agent codex` or `--scope user` for another supported client or a
 project-local installation. Preview a skill before installing it:
 
 ```bash
-gh skill preview rvstash/ravenstash-skills ravenstash-packages
+gh skill preview rvstash/ravenstash-skills-alpha ravenstash-packages
 ```
 
 ## Trust model
@@ -61,7 +59,8 @@ gh skill preview rvstash/ravenstash-skills ravenstash-packages
   browser-backed device flow; automation injects `RVS_TOKEN` from a secret
   manager.
 - A skill does not grant permission for a remote or destructive change. Exact
-  account, target, registry kind, and affected object must still be resolved.
+  account, target, repository format or OCI content type, and affected object
+  must still be resolved.
 - Public documentation remains authoritative for volatile product policy and
   availability.
 

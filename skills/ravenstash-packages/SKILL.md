@@ -4,8 +4,8 @@ description: Use Ravenstash private PyPI, npm, and Maven repositories and read-o
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.4.1"
-  ravenstash-rvs-compatibility: "unreleased-task-085"
+  version: "0.5.0"
+  ravenstash-rvs-compatibility: "0.13.x"
 ---
 
 # Ravenstash Packages
@@ -15,8 +15,9 @@ mirrors, acting accounts, or formats into one implicit destination.
 
 ## Preflight
 
-Repository management lives under `rvs art repo`. The product also supports Container and Helm, but
-those lanes use the separate OCI workflow.
+Repository management lives under `rvs art repo`. The product also supports
+Container images and Helm charts in one OCI repository format; those operations
+use the separate OCI workflow.
 
 1. Run `rvs --version` and use `rvs <group> --help` for exact syntax.
 2. Inspect authentication with `rvs auth status` and, when identity matters,
@@ -27,7 +28,7 @@ those lanes use the separate OCI workflow.
    `--rvs-target`. Prefer the one-shot form when the user did not request a
    saved selection change.
 5. Resolve the format. Never publish to a mirror or use a package-release
-   workflow against a Container or Helm lane.
+   workflow against OCI content.
 
 ## Route the workflow
 
