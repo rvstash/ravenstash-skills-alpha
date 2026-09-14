@@ -5,7 +5,7 @@ Operational guidance for the Ravenstash Agent Skills repository.
 ## Agent workflow
 
 - For cross-repository, product-policy, release, or production work, first read
-  `../../AGENTS.md` and the authoritative documents it identifies.
+  `../../../AGENTS.md` and the authoritative documents it identifies.
 - Reviews and investigations are read-only. For implementation, complete the
   authorized local change and run the smallest relevant verification.
 - Do not commit, push, release, or publish unless the user explicitly requests
