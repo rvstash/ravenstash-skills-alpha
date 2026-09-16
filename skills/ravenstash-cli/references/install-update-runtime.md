@@ -4,16 +4,24 @@ Load only for installation, upgrades, runtime management, or shell changes.
 
 ## Install and update
 
-The supported end-user install path for Ubuntu 20.04+ and Debian 11+ on Linux
-`amd64` is:
+The shell installer selects the released native build on supported Linux and
+macOS systems:
 
 ```bash
 curl -fsSL https://ravenstash.com/install.sh | bash
 ```
 
-This executes downloaded code and configures APT. Show the command and point to
-<https://ravenstash.com/install.sh> for review; run it only when the user has
-authorized the host-level installation.
+Windows 11 uses PowerShell:
+
+```powershell
+irm https://ravenstash.com/install.ps1 | iex
+```
+
+The supported release targets Linux glibc and musl, macOS, and Windows on amd64
+and arm64, plus versioned Nix flakes and matching Linux paths for WSL2. The
+installer executes downloaded code. Show the applicable command and installer
+URL for review; run it only when the user has authorized the host-level
+installation.
 
 Check for compatible updates without applying one:
 
@@ -38,7 +46,17 @@ rvs update --to SERIES --apply
 `SERIES` is the requested newer release series. The first command only previews;
 only `--apply` installs. `--yes` requires `--apply`.
 
-Do not replace the binary manually or bypass the signed APT path.
+APT installations delegate to APT. Portable Linux, Alpine, macOS, and Windows
+installations authenticate, stage, health-check, and activate the matching
+bundle. Nix installations delegate replacement to Nix. Do not replace the
+binary manually or bypass the signed update path.
+
+Signed release candidates can be previewed and installed explicitly:
+
+```bash
+rvs update --candidate X.Y.ZrcN
+rvs update --candidate X.Y.ZrcN --apply
+```
 
 ## Managed runtimes
 

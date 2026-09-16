@@ -26,6 +26,7 @@ target selection, registry support, or availability.
 | Form | Meaning | Capabilities |
 | --- | --- | --- |
 | `namespace/repository` | Private repository | Read and publish for enabled lanes |
+| `in/ar_...` | ID-based private-repository target | Same repository across name changes |
 | `mirror:source` | Ravenstash-curated official private mirror | Read only |
 | `custom-mirror:name` | Account-defined custom private mirror | Read only |
 
@@ -46,8 +47,8 @@ target remains scoped to its local profile and immutable acting-account identity
 
 ## Availability floor for these skills
 
-These sources target the released `rvs` 0.13.x channel and were verified against
-`v0.13.2`. `rvs art repo` manages repositories for packages, container images,
+These sources target the released `rvs` 0.14.x channel and were verified against
+`v0.14.2`. `rvs art repo` manages repositories for packages, container images,
 and Helm charts. Top-level `rvs repo`, `rvs artifacts`, and `rvs ci` are absent.
 Check current public documentation before making broader product-availability
 claims.

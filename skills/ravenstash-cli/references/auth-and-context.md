@@ -56,8 +56,8 @@ repository, command transcript, shell profile, or `~/.rvs/config.toml`.
 ```bash
 rvs account list
 rvs account current
-rvs account use Avery
-rvs account use AcmeHQ
+rvs account switch Avery
+rvs account switch AcmeHQ
 rvs context current
 ```
 

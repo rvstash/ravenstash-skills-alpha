@@ -14,6 +14,9 @@ SKILLS = ROOT / "skills"
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+REMOVED_COMMANDS = {
+    "rvs account use": "use `rvs account switch` with supported rvs releases",
+}
 
 
 def scalar(frontmatter: str, key: str) -> str | None:
@@ -44,6 +47,13 @@ def validate_links(path: Path, errors: list[str]) -> None:
         clean_target = target.split("#", 1)[0]
         if clean_target and not (path.parent / clean_target).resolve().exists():
             errors.append(f"{path.relative_to(ROOT)}: missing link target {target}")
+
+
+def validate_released_commands(path: Path, errors: list[str]) -> None:
+    content = path.read_text(encoding="utf-8")
+    for command, guidance in REMOVED_COMMANDS.items():
+        if command in content:
+            errors.append(f"{path.relative_to(ROOT)}: removed command `{command}`; {guidance}")
 
 
 def validate_openai_yaml(skill_dir: Path, name: str, errors: list[str]) -> None:
@@ -106,9 +116,11 @@ def validate_skills(errors: list[str]) -> set[str]:
         else:
             compatibilities[name] = compatibility
         validate_links(path, errors)
+        validate_released_commands(path, errors)
         validate_openai_yaml(skill_dir, name, errors)
         for reference in sorted((skill_dir / "references").glob("*.md")):
             validate_links(reference, errors)
+            validate_released_commands(reference, errors)
     if len(set(versions.values())) > 1:
         errors.append(f"skills: inconsistent metadata.version values: {versions}")
     if len(set(compatibilities.values())) > 1:

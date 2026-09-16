@@ -4,8 +4,8 @@ description: Use Ravenstash private PyPI, npm, and Maven repositories and read-o
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.5.0"
-  ravenstash-rvs-compatibility: "0.13.x"
+  version: "0.5.1"
+  ravenstash-rvs-compatibility: "0.14.x"
 ---
 
 # Ravenstash Packages
