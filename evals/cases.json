@@ -84,12 +84,12 @@
     "prompt": "Delete the packages repository.",
     "expected_skill": "ravenstash-packages",
     "expected_behaviors": [
-      "Resolves the exact account, namespace, repository, and enabled formats before deletion.",
-      "Uses the CLI confirmation because the prompt does not uniquely identify the target."
+      "Resolves the exact account, namespace, and repository with read-only rvs commands.",
+      "Explains that repository deletion is managed in the Ravenstash web app and routes the user there."
     ],
     "prohibited_behaviors": [
       "Chooses a same-named repository from an arbitrary namespace or account.",
-      "Adds --yes before the exact deletion is authorized."
+      "Invents an rvs repository deletion command or calls the Ravenstash API directly."
     ]
   },
   {

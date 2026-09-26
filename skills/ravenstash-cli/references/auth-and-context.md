@@ -16,14 +16,14 @@ Keep four layers distinct:
 ```bash
 rvs auth login
 rvs auth login --profile work
-rvs auth login --duration 8h
+rvs auth login --duration 30d
 rvs auth status
 rvs auth whoami
 ```
 
 Device login requires the user to review and approve the browser request. Do
-not automate that approval. The server may reduce a requested duration to its
-current policy.
+not automate that approval. `--duration` accepts 12 hours through 180 days; the
+server may reduce a requested duration to its current policy.
 
 Inspect and manage local profiles without exposing credentials:
 
@@ -75,7 +75,7 @@ rvs art select platform/backend
 rvs art clear
 ```
 
-Target forms are `namespace/repository`, `mirror:source`, and
+Target forms are `namespace/repository`, `in/ar_...`, `mirror:source`, and
 `custom-mirror:name`. Prefer one-shot `--target` or wrapper `--rvs-target` when
 the user did not ask to change saved selection.
 
@@ -83,8 +83,11 @@ Resolution precedence is:
 
 1. Explicit one-shot target.
 2. Selected target for the effective local profile and acting account.
-3. Legacy per-format private-repository default.
-4. For supported reads, the account's enabled official cache.
+
+With neither, the command stops and asks for `--target` or `rvs art select`;
+there is no per-format default or automatic mirror fallback. `rvs art package`
+commands follow the same rule and need `--format` only when the repository has
+more than one of PyPI, npm, and Maven.
 
 An explicit account is resolved before the target. A failed authorization or
 missing immutable target must not trigger a retry against another account or a

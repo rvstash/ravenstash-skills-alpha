@@ -41,7 +41,7 @@ target remains scoped to its local profile and immutable acting-account identity
 - ORAS uses the selected OCI repository without a separate Ravenstash format
   flag; content type comes from the manifest.
 - A mirror's backing remote cache can be connected behind a compatible private
-  repository. The
+  repository in the web app; `rvs art repo upstream list` shows the result. The
   attachment copies its age setting when created and is then managed
   independently from the mirror default.
 
@@ -50,5 +50,6 @@ target remains scoped to its local profile and immutable acting-account identity
 These sources target the released `rvs` 0.14.x channel and were verified against
 `v0.14.2`. `rvs art repo` manages repositories for packages, container images,
 and Helm charts. Top-level `rvs repo`, `rvs artifacts`, and `rvs ci` are absent.
-Check current public documentation before making broader product-availability
-claims.
+Repository rename and deletion, upstream changes, mirror age changes and
+deletion, and whole-package deletion are web-app-only. Check current public
+documentation before making broader product-availability claims.

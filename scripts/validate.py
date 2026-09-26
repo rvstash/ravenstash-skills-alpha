@@ -14,8 +14,18 @@ SKILLS = ROOT / "skills"
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+WEB_APP_ONLY = "the operation is managed in the Ravenstash web app"
 REMOVED_COMMANDS = {
     "rvs account use": "use `rvs account switch` with supported rvs releases",
+    "rvs art repo set-default": "use `rvs art select` or a one-shot `--target`",
+    "rvs art repo rename": WEB_APP_ONLY,
+    "rvs art repo delete": WEB_APP_ONLY,
+    "rvs art repo upstream add": WEB_APP_ONLY,
+    "rvs art repo upstream update": WEB_APP_ONLY,
+    "rvs art repo upstream remove": WEB_APP_ONLY,
+    "rvs art mirror set-age": WEB_APP_ONLY,
+    "rvs art mirror delete": WEB_APP_ONLY,
+    "rvs art package delete": WEB_APP_ONLY,
 }
 
 
@@ -52,7 +62,8 @@ def validate_links(path: Path, errors: list[str]) -> None:
 def validate_released_commands(path: Path, errors: list[str]) -> None:
     content = path.read_text(encoding="utf-8")
     for command, guidance in REMOVED_COMMANDS.items():
-        if command in content:
+        # A hyphenated continuation is a different command (`delete-version`).
+        if re.search(rf"{re.escape(command)}(?![\w-])", content):
             errors.append(f"{path.relative_to(ROOT)}: removed command `{command}`; {guidance}")
 
 

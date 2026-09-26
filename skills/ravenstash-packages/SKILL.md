@@ -1,6 +1,6 @@
 ---
 name: ravenstash-packages
-description: Use Ravenstash private PyPI, npm, and Maven repositories and read-only private mirrors through rvs and native package tools. Use for repository or mirror discovery and management, dependency installation, package publishing, lifecycle operations, upstream attachment, and CI package access; do not use for Container or Helm OCI workflows.
+description: Use Ravenstash private PyPI, npm, and Maven repositories and read-only private mirrors through rvs and native package tools. Use for repository or mirror discovery and creation, dependency installation, package publishing, version lifecycle operations, upstream inspection, and CI package access; do not use for Container or Helm OCI workflows.
 license: MIT
 metadata:
   author: Ravenstash
@@ -32,8 +32,8 @@ use the separate OCI workflow.
 
 ## Route the workflow
 
-- For repository, package lifecycle, upstream attachment, or mirror management,
-  read [references/repositories-and-caches.md](references/repositories-and-caches.md).
+- For repository, package lifecycle, upstream, or mirror work, read
+  [references/repositories-and-caches.md](references/repositories-and-caches.md).
 - For Python installs or publishing, read [references/pypi.md](references/pypi.md).
 - For npm installs or publishing, read [references/npm.md](references/npm.md).
 - For Maven installs or deployments, read [references/maven.md](references/maven.md).
@@ -64,9 +64,13 @@ The wrappers must not cause a skill or agent to copy tokens into `.npmrc`,
 ## Mutation boundary
 
 - Listing, showing, resolving URLs, and checking current context are read-only.
-- Creating or renaming repositories/mirrors, changing defaults or upstreams,
-  selecting saved context, configuring persistent native clients, publishing,
-  yanking, and deleting mutate local or remote state.
+- Creating repositories or mirrors, selecting saved context, configuring
+  persistent native clients, publishing, yanking, deprecating, and deleting
+  versions or OCI content mutate local or remote state.
+- Renaming or deleting a repository, changing its upstreams, changing a private
+  mirror's age policy, deleting a mirror, and deleting a whole package are
+  web-app-only. Route them to the Ravenstash web app; do not invent an `rvs`
+  command or call the API directly.
 - Before a mutation, report the exact acting account, namespace/repository or mirror,
   format, package/version when applicable, and intended change.
 - Do not pass `--yes` to deletion commands merely to suppress the CLI's

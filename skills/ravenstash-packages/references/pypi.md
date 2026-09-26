@@ -19,8 +19,8 @@ rvs pip --rvs-target mirror:pypiorg install requests
 
 Ravenstash must be the primary index for a selected Ravenstash resolution
 workflow. Do not recommend pip `--extra-index-url`; dependency-confusion rules
-can allow the unintended index to win. Use a repository upstream attachment or
-an explicit mirror target instead.
+can allow the unintended index to win. Use a repository upstream attachment
+(configured in the Ravenstash web app) or an explicit mirror target instead.
 
 ## Publish
 

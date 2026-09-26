@@ -25,8 +25,10 @@ documentation or installed CLI help.
 - Use `ravenstash-oci` for container images or Helm charts in OCI-enabled
   repositories and for Docker, Helm, or ORAS workflows.
 - Use the Ravenstash web application for account security settings,
-  organization membership, passkeys, automation-token creation, and workflows
-  not exposed by `rvs`.
+  organization membership, passkeys, automation-token creation, custom-mirror
+  creation, and workflows not exposed by `rvs`: renaming or deleting a
+  repository, changing its upstreams, changing a private mirror's age policy,
+  deleting a mirror, and deleting a whole package.
 
 Read [references/product-model.md](references/product-model.md) when the request
 depends on repository formats, target types, terminology, or current product
