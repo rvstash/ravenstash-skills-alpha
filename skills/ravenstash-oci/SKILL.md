@@ -4,7 +4,7 @@ description: Use Ravenstash private OCI repositories for container images and He
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.5.1"
+  version: "0.6.0"
   ravenstash-rvs-compatibility: "0.14.x"
 ---
 

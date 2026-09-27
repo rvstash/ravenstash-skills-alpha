@@ -4,7 +4,7 @@ Official Agent Skills for Ravenstash products and the `rvs` developer CLI.
 This public alpha repository contains the current portable workflows and
 behavioral evals.
 
-The 0.5 skill source targets the `rvs` 0.14.x compatibility channel declared in
+The 0.6 skill source targets the `rvs` 0.14.x compatibility channel declared in
 each skill's `ravenstash-rvs-compatibility` metadata. Installed CLI help remains
 the execution authority.
 

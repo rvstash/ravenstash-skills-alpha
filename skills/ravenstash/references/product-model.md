@@ -48,7 +48,7 @@ target remains scoped to its local profile and immutable acting-account identity
 ## Availability floor for these skills
 
 These sources target the released `rvs` 0.14.x channel and were verified against
-`v0.14.2`. `rvs art repo` manages repositories for packages, container images,
+`v0.14.11`. `rvs art repo` manages repositories for packages, container images,
 and Helm charts. Top-level `rvs repo`, `rvs artifacts`, and `rvs ci` are absent.
 Repository rename and deletion, upstream changes, mirror age changes and
 deletion, and whole-package deletion are web-app-only. Check current public

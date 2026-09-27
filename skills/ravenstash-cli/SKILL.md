@@ -4,7 +4,7 @@ description: Install, update, authenticate, inspect, and troubleshoot the Ravens
 license: MIT
 metadata:
   author: Ravenstash
-  version: "0.5.1"
+  version: "0.6.0"
   ravenstash-rvs-compatibility: "0.14.x"
 ---
 
@@ -18,7 +18,7 @@ lock files, builds, and dependency resolution.
 
 1. Check for the CLI with `command -v rvs`.
 2. If present, run `rvs --version`. This source targets the `0.14.x` channel and
-   was verified against `v0.14.2`; if the installed command differs, use its help
+   was verified against `v0.14.11`; if the installed command differs, use its help
    and current release notes rather than forcing these examples.
 3. Discover exact syntax with `rvs --help` and `rvs <group> --help`. Never guess
    a subcommand or option.
